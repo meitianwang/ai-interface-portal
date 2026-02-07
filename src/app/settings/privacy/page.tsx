@@ -3,11 +3,13 @@
 import { useState, useEffect } from "react";
 import { createClient } from "@/lib/supabase/client";
 import { useAuth } from "@/lib/auth-context";
+import { useI18n } from "@/lib/i18n-context";
 import { Loader2, Shield, Eye, Trash2, Download, AlertTriangle } from "lucide-react";
 import { cn } from "@/lib/utils";
 
 export default function SettingsPrivacyPage() {
   const { user } = useAuth();
+  const { t } = useI18n();
   const supabase = createClient();
   const [dataConsent, setDataConsent] = useState(true);
   const [isLoading, setIsLoading] = useState(true);
@@ -62,9 +64,9 @@ export default function SettingsPrivacyPage() {
     <div>
       {/* Header */}
       <div className="mb-8">
-        <h1 className="text-2xl font-bold mb-1">Privacy</h1>
+        <h1 className="text-2xl font-bold mb-1">{t("privacy.title")}</h1>
         <p className="text-muted-foreground">
-          Manage your data and privacy settings
+          {t("privacy.subtitle")}
         </p>
       </div>
 
@@ -78,9 +80,9 @@ export default function SettingsPrivacyPage() {
             <div className="flex-1">
               <div className="flex items-center justify-between">
                 <div>
-                  <h2 className="font-semibold">Data Collection</h2>
+                  <h2 className="font-semibold">{t("privacy.dataCollection.title")}</h2>
                   <p className="text-sm text-muted-foreground mt-1">
-                    Allow us to collect anonymous usage data to improve our services
+                    {t("privacy.dataCollection.subtitle")}
                   </p>
                 </div>
                 <button
@@ -99,13 +101,13 @@ export default function SettingsPrivacyPage() {
                 </button>
               </div>
               <div className="mt-4 p-4 bg-secondary/50 rounded-lg text-sm text-muted-foreground">
-                <p className="mb-2">We collect:</p>
+                <p className="mb-2">{t("privacy.dataCollection.weCollect")}</p>
                 <ul className="list-disc list-inside space-y-1">
-                  <li>Aggregated usage statistics</li>
-                  <li>Performance metrics</li>
-                  <li>Error reports</li>
+                  <li>{t("privacy.dataCollection.stats")}</li>
+                  <li>{t("privacy.dataCollection.metrics")}</li>
+                  <li>{t("privacy.dataCollection.errors")}</li>
                 </ul>
-                <p className="mt-2">We never collect your prompts or API responses.</p>
+                <p className="mt-2">{t("privacy.dataCollection.never")}</p>
               </div>
             </div>
           </div>
@@ -118,12 +120,12 @@ export default function SettingsPrivacyPage() {
               <Download className="w-5 h-5 text-blue-500" />
             </div>
             <div className="flex-1">
-              <h2 className="font-semibold">Download Your Data</h2>
+              <h2 className="font-semibold">{t("privacy.download.title")}</h2>
               <p className="text-sm text-muted-foreground mt-1">
-                Get a copy of all your data stored on OpenRouter
+                {t("privacy.download.subtitle")}
               </p>
               <button className="mt-4 h-10 px-4 bg-secondary rounded-lg font-medium hover:bg-secondary/80 transition-colors text-sm">
-                Request Data Export
+                {t("privacy.download.button")}
               </button>
             </div>
           </div>
@@ -136,12 +138,12 @@ export default function SettingsPrivacyPage() {
               <Shield className="w-5 h-5 text-primary" />
             </div>
             <div className="flex-1">
-              <h2 className="font-semibold">Chat History</h2>
+              <h2 className="font-semibold">{t("privacy.chatHistory.title")}</h2>
               <p className="text-sm text-muted-foreground mt-1">
-                Your chat history is stored locally in your browser and is not sent to our servers
+                {t("privacy.chatHistory.subtitle")}
               </p>
               <button className="mt-4 h-10 px-4 bg-secondary rounded-lg font-medium hover:bg-secondary/80 transition-colors text-sm text-red-500">
-                Clear Local Chat History
+                {t("privacy.chatHistory.button")}
               </button>
             </div>
           </div>
@@ -154,15 +156,15 @@ export default function SettingsPrivacyPage() {
               <Trash2 className="w-5 h-5 text-red-500" />
             </div>
             <div className="flex-1">
-              <h2 className="font-semibold text-red-500">Delete Account</h2>
+              <h2 className="font-semibold text-red-500">{t("privacy.deleteAccount.title")}</h2>
               <p className="text-sm text-muted-foreground mt-1">
-                Permanently delete your account and all associated data. This action cannot be undone.
+                {t("privacy.deleteAccount.subtitle")}
               </p>
               <button
                 onClick={() => setShowDeleteModal(true)}
                 className="mt-4 h-10 px-4 bg-red-500 text-white rounded-lg font-medium hover:bg-red-600 transition-colors text-sm"
               >
-                Delete My Account
+                {t("privacy.deleteAccount.button")}
               </button>
             </div>
           </div>
@@ -177,28 +179,28 @@ export default function SettingsPrivacyPage() {
               <div className="w-10 h-10 rounded-lg bg-red-500/10 flex items-center justify-center">
                 <AlertTriangle className="w-5 h-5 text-red-500" />
               </div>
-              <h2 className="text-xl font-bold">Delete Account</h2>
+              <h2 className="text-xl font-bold">{t("privacy.deleteAccount.confirmTitle")}</h2>
             </div>
 
             <p className="text-muted-foreground mb-4">
-              This will permanently delete your account, including:
+              {t("privacy.deleteAccount.confirmText")}
             </p>
             <ul className="list-disc list-inside text-sm text-muted-foreground mb-6 space-y-1">
-              <li>Your profile and preferences</li>
-              <li>All API keys</li>
-              <li>Usage history</li>
-              <li>Any remaining credits (non-refundable)</li>
+              <li>{t("privacy.deleteAccount.confirmProfile")}</li>
+              <li>{t("privacy.deleteAccount.confirmKeys")}</li>
+              <li>{t("privacy.deleteAccount.confirmHistory")}</li>
+              <li>{t("privacy.deleteAccount.confirmCredits")}</li>
             </ul>
 
             <div className="mb-6">
               <label className="block text-sm font-medium mb-2">
-                Type <span className="font-mono text-red-500">delete my account</span> to confirm
+                {t("privacy.deleteAccount.typeConfirm")} <span className="font-mono text-red-500">{t("privacy.deleteAccount.confirmPhrase")}</span> {t("privacy.deleteAccount.toConfirm")}
               </label>
               <input
                 type="text"
                 value={deleteConfirmation}
                 onChange={(e) => setDeleteConfirmation(e.target.value)}
-                placeholder="delete my account"
+                placeholder={t("privacy.deleteAccount.confirmPhrase")}
                 className="w-full h-10 px-4 bg-secondary rounded-lg text-sm placeholder:text-muted-foreground border border-transparent focus:outline-none focus:ring-2 focus:ring-red-500/50"
               />
             </div>
@@ -211,13 +213,13 @@ export default function SettingsPrivacyPage() {
                 }}
                 className="flex-1 h-10 bg-secondary rounded-lg font-medium hover:bg-secondary/80 transition-colors"
               >
-                Cancel
+                {t("common.cancel")}
               </button>
               <button
-                disabled={deleteConfirmation !== "delete my account"}
+                disabled={deleteConfirmation !== t("privacy.deleteAccount.confirmPhrase")}
                 className="flex-1 h-10 bg-red-500 text-white rounded-lg font-medium hover:bg-red-600 transition-colors disabled:opacity-50 disabled:cursor-not-allowed"
               >
-                Delete Account
+                {t("privacy.deleteAccount.title")}
               </button>
             </div>
           </div>

@@ -1,41 +1,42 @@
-import Link from "next/link";
+"use client";
 
-const footerLinks = {
-  product: [
-    { name: "Chat", href: "/chat" },
-    { name: "Rankings", href: "/rankings" },
-    { name: "Models", href: "/models" },
-    { name: "Providers", href: "/providers" },
-    { name: "Pricing", href: "/pricing" },
-    { name: "Enterprise", href: "/enterprise" },
-  ],
-  company: [
-    { name: "About", href: "/about" },
-    { name: "Announcements", href: "/announcements" },
-    { name: "Careers", href: "/careers", badge: "Hiring" },
-    { name: "Partners", href: "/partners" },
-    { name: "Privacy", href: "/privacy" },
-    { name: "Terms of Service", href: "/terms" },
-    { name: "Support", href: "/support" },
-    { name: "State of AI", href: "/state-of-ai" },
-    { name: "Works With OR", href: "/works-with" },
-  ],
-  developer: [
-    { name: "Documentation", href: "/docs" },
-    { name: "API Reference", href: "/docs/api" },
-    { name: "SDK", href: "/docs/sdk" },
-    { name: "Status", href: "https://status.openrouter.ai" },
-  ],
-  connect: [
-    { name: "Discord", href: "https://discord.gg/openrouter" },
-    { name: "GitHub", href: "https://github.com/openrouter" },
-    { name: "LinkedIn", href: "https://linkedin.com/company/openrouter" },
-    { name: "X", href: "https://x.com/openrouter" },
-    { name: "YouTube", href: "https://youtube.com/@openrouter" },
-  ],
-};
+import Link from "next/link";
+import { useI18n } from "@/lib/i18n-context";
 
 export function Footer() {
+  const { t } = useI18n();
+
+  const footerLinks = {
+    product: [
+      { name: t("nav.chat"), href: "/chat" },
+      { name: t("nav.rankings"), href: "/rankings" },
+      { name: t("nav.models"), href: "/models" },
+      { name: t("nav.pricing"), href: "/pricing" },
+      { name: t("nav.enterprise"), href: "/enterprise" },
+    ],
+    company: [
+      { name: t("footer.about"), href: "/about" },
+      { name: t("footer.announcements"), href: "/announcements" },
+      { name: t("footer.careers"), href: "/careers", badge: "Hiring" },
+      { name: t("footer.partners"), href: "/partners" },
+      { name: t("footer.termsOfService"), href: "/terms" },
+      { name: t("footer.support"), href: "/support" },
+    ],
+    developer: [
+      { name: t("footer.documentation"), href: "/docs" },
+      { name: t("footer.apiReference"), href: "/docs/api" },
+      { name: t("footer.sdk"), href: "/docs/sdk" },
+      { name: t("footer.status"), href: "https://status.openrouter.ai" },
+    ],
+    connect: [
+      { name: "Discord", href: "https://discord.gg/openrouter" },
+      { name: "GitHub", href: "https://github.com/openrouter" },
+      { name: "LinkedIn", href: "https://linkedin.com/company/openrouter" },
+      { name: "X", href: "https://x.com/openrouter" },
+      { name: "YouTube", href: "https://youtube.com/@openrouter" },
+    ],
+  };
+
   return (
     <footer className="border-t border-border py-16 md:py-20">
       <div className="mx-auto max-w-7xl px-6 md:px-8">
@@ -65,10 +66,10 @@ export function Footer() {
 
           {/* Product */}
           <div>
-            <h4 className="font-semibold mb-5">Product</h4>
+            <h4 className="font-semibold mb-5">{t("footer.product")}</h4>
             <ul className="space-y-3">
               {footerLinks.product.map((link) => (
-                <li key={link.name}>
+                <li key={link.href}>
                   <Link
                     href={link.href}
                     className="text-sm text-muted-foreground hover:text-foreground transition-colors"
@@ -82,10 +83,10 @@ export function Footer() {
 
           {/* Company */}
           <div>
-            <h4 className="font-semibold mb-5">Company</h4>
+            <h4 className="font-semibold mb-5">{t("footer.company")}</h4>
             <ul className="space-y-3">
               {footerLinks.company.map((link) => (
-                <li key={link.name}>
+                <li key={link.href}>
                   <Link
                     href={link.href}
                     className="text-sm text-muted-foreground hover:text-foreground transition-colors inline-flex items-center gap-2"
@@ -104,10 +105,10 @@ export function Footer() {
 
           {/* Developer */}
           <div>
-            <h4 className="font-semibold mb-5">Developer</h4>
+            <h4 className="font-semibold mb-5">{t("footer.developer")}</h4>
             <ul className="space-y-3">
               {footerLinks.developer.map((link) => (
-                <li key={link.name}>
+                <li key={link.href}>
                   <Link
                     href={link.href}
                     className="text-sm text-muted-foreground hover:text-foreground transition-colors"
@@ -121,10 +122,10 @@ export function Footer() {
 
           {/* Connect */}
           <div>
-            <h4 className="font-semibold mb-5">Connect</h4>
+            <h4 className="font-semibold mb-5">{t("footer.connect")}</h4>
             <ul className="space-y-3">
               {footerLinks.connect.map((link) => (
-                <li key={link.name}>
+                <li key={link.href}>
                   <Link
                     href={link.href}
                     className="text-sm text-muted-foreground hover:text-foreground transition-colors"

@@ -1,0 +1,626 @@
+{
+  "common": {
+    "search": "搜索",
+    "save": "保存",
+    "cancel": "取消",
+    "delete": "删除",
+    "edit": "编辑",
+    "create": "创建",
+    "loading": "加载中...",
+    "saved": "已保存",
+    "saving": "保存中...",
+    "viewAll": "查看全部",
+    "learnMore": "了解更多",
+    "viewDocs": "查看文档",
+    "browseAll": "浏览全部",
+    "clearFilters": "清除筛选",
+    "clearAllFilters": "清除所有筛选",
+    "filters": "筛选",
+    "showing": "显示",
+    "noResults": "未找到结果",
+    "new": "新",
+    "free": "免费",
+    "or": "或",
+    "done": "完成",
+    "creating": "创建中...",
+    "sending": "发送中...",
+    "subscribe": "订阅",
+    "enterEmail": "输入您的邮箱",
+    "getStarted": "开始使用",
+    "contactSales": "联系销售",
+    "readTheDocs": "阅读文档",
+    "characters": "字符",
+    "all": "全部",
+    "featured": "精选",
+    "recent": "最近",
+    "settings": "设置",
+    "purchase": "购买",
+    "rank": "排名",
+    "users": "用户",
+    "trend": "趋势",
+    "thisWeek": "本周"
+  },
+  "metadata": {
+    "title": "OpenRouter | 大语言模型统一接口",
+    "description": "更优惠的价格，更稳定的服务，无需订阅。通过一个 API 访问 300+ AI 模型。"
+  },
+  "nav": {
+    "models": "模型",
+    "chat": "对话",
+    "rankings": "排行榜",
+    "enterprise": "企业版",
+    "pricing": "价格",
+    "docs": "文档"
+  },
+  "settings": {
+    "title": "设置",
+    "apiKeys": "API 密钥",
+    "credits": "余额",
+    "usage": "用量",
+    "profile": "个人资料",
+    "preferences": "偏好设置",
+    "privacy": "隐私"
+  },
+  "preferences": {
+    "title": "偏好设置",
+    "subtitle": "自定义您的 OpenRouter 体验",
+    "theme": {
+      "title": "主题",
+      "subtitle": "选择您喜欢的配色方案",
+      "light": "浅色",
+      "dark": "深色",
+      "system": "跟随系统"
+    },
+    "language": {
+      "title": "语言",
+      "subtitle": "选择界面显示语言"
+    },
+    "notifications": {
+      "title": "通知",
+      "subtitle": "管理您的邮件通知偏好",
+      "email": {
+        "title": "邮件通知",
+        "subtitle": "接收有关您账户的重要更新"
+      },
+      "marketing": {
+        "title": "营销邮件",
+        "subtitle": "接收新闻、公告和产品更新"
+      },
+      "usage": {
+        "title": "用量提醒",
+        "subtitle": "当余额不足时收到通知"
+      },
+      "threshold": {
+        "title": "提醒阈值",
+        "subtitle": "当余额低于此金额时您将收到通知"
+      }
+    }
+  },
+  "privacy": {
+    "title": "隐私",
+    "subtitle": "管理您的数据和隐私设置",
+    "dataCollection": {
+      "title": "数据收集",
+      "subtitle": "允许我们收集匿名使用数据以改进服务",
+      "weCollect": "我们收集：",
+      "stats": "汇总使用统计",
+      "metrics": "性能指标",
+      "errors": "错误报告",
+      "never": "我们绝不会收集您的对话内容或 API 响应。"
+    },
+    "download": {
+      "title": "下载您的数据",
+      "subtitle": "获取存储在 OpenRouter 上的所有数据副本",
+      "button": "请求导出数据"
+    },
+    "chatHistory": {
+      "title": "聊天记录",
+      "subtitle": "您的聊天记录存储在本地浏览器中，不会发送到我们的服务器",
+      "button": "清除本地聊天记录"
+    },
+    "deleteAccount": {
+      "title": "删除账户",
+      "subtitle": "永久删除您的账户和所有相关数据。此操作无法撤销。",
+      "button": "删除我的账户",
+      "confirmTitle": "删除账户",
+      "confirmText": "这将永久删除您的账户，包括：",
+      "confirmProfile": "您的个人资料和偏好设置",
+      "confirmKeys": "所有 API 密钥",
+      "confirmHistory": "使用历史",
+      "confirmCredits": "所有剩余余额（不可退款）",
+      "typeConfirm": "输入",
+      "toConfirm": "以确认",
+      "confirmPhrase": "delete my account"
+    }
+  },
+  "profile": {
+    "title": "个人资料",
+    "subtitle": "管理您的公开个人信息",
+    "displayName": "显示名称",
+    "displayNameHint": "如果您分享应用，此名称将公开显示",
+    "fullName": "全名",
+    "email": "邮箱",
+    "emailCannotChange": "邮箱无法更改",
+    "bio": "简介",
+    "bioPlaceholder": "介绍一下自己...",
+    "website": "网站",
+    "company": "公司",
+    "location": "位置",
+    "avatar": "头像",
+    "avatarHint": "点击相机图标上传新头像。",
+    "avatarSize": "建议尺寸：256x256 像素",
+    "basicInfo": "基本信息",
+    "additionalInfo": "附加信息",
+    "saveChanges": "保存更改",
+    "characters": "字符"
+  },
+  "credits": {
+    "title": "余额",
+    "subtitle": "管理您的账户余额和购买余额",
+    "balance": "当前余额",
+    "currentBalance": "当前余额",
+    "lifetimeUsage": "累计使用",
+    "addCredits": "充值",
+    "buyCredits": "购买余额",
+    "purchaseCredits": "购买余额以使用 API",
+    "orEnterCustom": "或输入自定义金额",
+    "recentTransactions": "最近交易",
+    "noTransactions": "暂无交易记录",
+    "paymentMethods": "支付方式",
+    "addPaymentMethod": "添加支付方式",
+    "noPaymentMethods": "暂未添加支付方式",
+    "addCardToEnable": "添加卡片以启用自动充值",
+    "addCardHint": "添加卡片以启用自动充值",
+    "autoReload": "自动充值",
+    "autoReloadDesc": "余额不足时自动充值",
+    "autoReloadHint": "请先添加支付方式以启用自动充值",
+    "addPaymentFirst": "请先添加支付方式以启用自动充值",
+    "availableCredits": "可用余额",
+    "credits": "余额",
+    "purchase": "购买"
+  },
+  "usage": {
+    "title": "用量",
+    "subtitle": "追踪您的 API 使用情况和费用",
+    "export": "导出",
+    "last7days": "最近 7 天",
+    "last30days": "最近 30 天",
+    "last90days": "最近 90 天",
+    "totalSpent": "总花费",
+    "inputTokens": "输入 Token",
+    "outputTokens": "输出 Token",
+    "recentActivity": "最近活动",
+    "noUsage": "该时间段暂无使用数据",
+    "noData": "该时间段暂无使用数据",
+    "startUsing": "开始使用 API 以查看您的使用情况",
+    "model": "模型",
+    "input": "输入",
+    "output": "输出",
+    "cost": "费用",
+    "date": "日期"
+  },
+  "keys": {
+    "title": "API 密钥",
+    "subtitle": "管理您的 OpenRouter API 密钥",
+    "createKey": "创建密钥",
+    "createApiKey": "创建 API 密钥",
+    "newKeyName": "新密钥名称",
+    "keyName": "密钥名称",
+    "keyNamePlaceholder": "例如：生产环境、开发环境",
+    "keyCreated": "API 密钥已创建",
+    "copyWarning": "请立即复制您的 API 密钥，之后将无法再次查看！",
+    "yourApiKey": "您的 API 密钥",
+    "copy": "复制",
+    "close": "关闭",
+    "noKeys": "暂无 API 密钥",
+    "createFirst": "创建您的第一个 API 密钥以开始使用 OpenRouter",
+    "created": "创建于",
+    "lastUsed": "最后使用",
+    "never": "从未",
+    "revoke": "撤销",
+    "revokeConfirm": "确定要撤销此 API 密钥吗？此操作无法撤销。",
+    "keepSecure": "请妥善保管您的密钥",
+    "securityTip": "切勿分享您的 API 密钥或将其提交到版本控制。如果您认为密钥已泄露，请立即撤销。"
+  },
+  "auth": {
+    "signIn": "登录",
+    "signOut": "退出登录",
+    "signUp": "注册",
+    "continueWithGoogle": "使用 Google 继续",
+    "continueWithGitHub": "使用 GitHub 继续",
+    "continueWithMetaMask": "使用 MetaMask 继续",
+    "continueWithEmail": "使用邮箱继续",
+    "orContinueWith": "或者使用",
+    "email": "邮箱",
+    "password": "密码",
+    "forgotPassword": "忘记密码？",
+    "noAccount": "还没有账户？",
+    "hasAccount": "已有账户？",
+    "getApiKey": "获取您的 API 密钥",
+    "signInToManage": "登录以创建和管理您的 API 密钥",
+    "checkEmail": "请查收邮件",
+    "sentLoginLink": "我们已发送登录链接至",
+    "clickLinkToSignIn": "点击邮件中的链接登录您的账户。",
+    "useDifferentEmail": "使用其他邮箱",
+    "termsAgree": "继续即表示您同意我们的",
+    "termsOfService": "服务条款",
+    "and": "和",
+    "privacyPolicy": "隐私政策"
+  },
+  "home": {
+    "heroTitle1": "统一的接口",
+    "heroTitle2": "连接所有大语言模型",
+    "heroSubtitle": "更优惠的",
+    "prices": "价格",
+    "betterUptime": "更稳定的",
+    "uptime": "服务",
+    "noSubs": "无需订阅。",
+    "getApiKey": "获取 API 密钥",
+    "exploreModels": "探索模型",
+    "trustedBy": "全球开发者的信赖之选"
+  },
+  "stats": {
+    "trustedByMillions": "数百万用户的信赖",
+    "monthlyTokens": "月度 Token",
+    "globalUsers": "全球用户",
+    "activeProviders": "活跃供应商",
+    "models": "模型"
+  },
+  "features": {
+    "title": "OpenRouter 功能特性",
+    "oneApi": {
+      "title": "一个 API 连接所有模型",
+      "description": "通过统一接口访问所有主流模型",
+      "yourApp": "您的应用"
+    },
+    "availability": {
+      "title": "更高可用性",
+      "description": "通过分布式基础设施提供可靠的 AI 模型"
+    },
+    "pricing": {
+      "title": "价格与性能",
+      "description": "在不牺牲速度的情况下控制成本"
+    },
+    "privacy": {
+      "title": "自定义数据策略",
+      "description": "通过细粒度数据策略保护您的组织",
+      "noTraining": "不用于训练",
+      "noLogging": "不记录日志",
+      "gdprCompliant": "符合 GDPR"
+    }
+  },
+  "featuredAgents": {
+    "title": "精选智能体",
+    "subtitle": "超过 25 万个应用使用 OpenRouter，服务全球 420 万+ 用户",
+    "agents": {
+      "replit": "从创意到应用，最简单的方式",
+      "blackboxai": "为构建者打造的 AI 智能体",
+      "kiloCode": "智能体开发所需的一切"
+    }
+  },
+  "howItWorks": {
+    "title": "使用方法",
+    "step1": {
+      "title": "注册",
+      "description": "创建账户开始使用"
+    },
+    "step2": {
+      "title": "购买余额",
+      "description": "余额可用于任何模型或供应商"
+    },
+    "step3": {
+      "title": "获取 API 密钥",
+      "description": "创建 API 密钥并开始发送请求",
+      "apiKey": "API 密钥",
+      "openaiCompatible": "完全兼容 OpenAI"
+    }
+  },
+  "featuredModels": {
+    "title": "精选模型",
+    "subtitle": "60+ 供应商的 300+ 活跃模型",
+    "tokens": "Token 数",
+    "weeklyTrend": "周趋势"
+  },
+  "cta": {
+    "exploreModels": {
+      "title": "探索模型",
+      "description": "在我们的模型库中发现 AI 模型",
+      "button": "查看模型"
+    },
+    "rankings": {
+      "title": "模型和应用排行榜",
+      "description": "探索模型、实验室和公开应用的 Token 使用情况",
+      "button": "查看排行榜"
+    },
+    "announcements": {
+      "title": "最新公告"
+    }
+  },
+  "models": {
+    "title": "模型",
+    "subtitle": "浏览和比较 AI 模型",
+    "browseModels": "浏览来自 {providers}+ 供应商的 {count}+ 模型",
+    "searchPlaceholder": "搜索模型...",
+    "allModels": "所有模型",
+    "sortBy": "排序",
+    "newest": "最新",
+    "popular": "最热门",
+    "priceLowHigh": "价格：低到高",
+    "priceHighLow": "价格：高到低",
+    "contextHighLow": "上下文：高到低",
+    "contextLength": "上下文",
+    "inputPrice": "输入",
+    "outputPrice": "输出",
+    "perMillion": "每百万 Token",
+    "categories": "分类",
+    "providers": "供应商",
+    "noModelsFound": "未找到模型"
+  },
+  "chat": {
+    "title": "对话",
+    "newChat": "新对话",
+    "selectModel": "选择模型",
+    "typeMessage": "输入消息...",
+    "send": "发送",
+    "stop": "停止",
+    "regenerate": "重新生成",
+    "recent": "最近",
+    "newConversation": "新对话",
+    "startConversation": "开始对话",
+    "sendMessageToStart": "发送消息开始与",
+    "pressEnterToSend": "按 Enter 发送，Shift+Enter 换行",
+    "clearChat": "清除对话"
+  },
+  "rankings": {
+    "title": "排行榜",
+    "subtitle": "探索模型、供应商和应用的 Token 使用情况",
+    "totalTokens": "总 Token 数",
+    "activeModels": "活跃模型",
+    "globalUsers": "全球用户",
+    "models": "模型",
+    "providers": "供应商",
+    "apps": "应用",
+    "model": "模型",
+    "provider": "供应商",
+    "app": "应用",
+    "weeklyTokens": "周 Token 数",
+    "context": "上下文"
+  },
+  "pricing": {
+    "title": "简单透明的定价",
+    "subtitle": "按用量付费，无订阅，无隐藏费用。",
+    "free": {
+      "name": "免费版",
+      "description": "使用免费模型开始体验",
+      "features": {
+        "freeModels": "访问免费模型",
+        "requests": "每天 1,000 次请求",
+        "support": "社区支持",
+        "analytics": "基础分析"
+      }
+    },
+    "payAsYouGo": {
+      "name": "按量付费",
+      "description": "按实际使用量付费",
+      "features": {
+        "allModels": "访问全部 300+ 模型",
+        "noMinimum": "无最低消费",
+        "priorityRouting": "优先路由",
+        "emailSupport": "邮件支持",
+        "advancedAnalytics": "高级分析"
+      }
+    },
+    "enterprise": {
+      "name": "企业版",
+      "description": "为您的组织定制解决方案",
+      "features": {
+        "everything": "包含按量付费的所有功能",
+        "volumeDiscounts": "批量折扣",
+        "sla": "99.9% SLA 保证",
+        "dedicatedSupport": "专属支持",
+        "customIntegrations": "定制集成",
+        "sso": "SSO 和 SAML"
+      }
+    },
+    "whyChoose": "为什么选择 OpenRouter？",
+    "oneApi": "一个 API",
+    "oneApiDesc": "通过统一的 API 访问所有主流 AI 模型",
+    "providers": "60+ 供应商",
+    "providersDesc": "从最广泛的 AI 供应商中选择",
+    "usersCount": "500 万+ 用户",
+    "usersDesc": "加入数百万使用 OpenRouter 构建应用的开发者",
+    "dataPrivacy": "数据隐私",
+    "dataPrivacyDesc": "未经同意，您的数据绝不会用于训练",
+    "faq": "常见问题",
+    "readyToStart": "准备好开始了吗？",
+    "readyDesc": "立即开始使用 OpenRouter 构建应用，无需信用卡。",
+    "faqItems": {
+      "q1": "定价是如何运作的？",
+      "a1": "按使用的 Token 付费。每个模型都有自己的定价，您可以在模型页面查看。没有订阅费或隐藏费用。",
+      "q2": "有免费套餐吗？",
+      "a2": "有！我们提供多个免费模型的访问权限，并有合理的速率限制。非常适合入门和测试。",
+      "q3": "如何充值？",
+      "a3": "您可以随时从控制面板使用信用卡充值。我们也支持大额加密货币支付。",
+      "q4": "企业版包含什么？",
+      "a4": "企业版包括批量折扣、SLA 保证、专属支持、定制集成以及 SSO/SAML 认证。"
+    }
+  },
+  "docs": {
+    "title": "文档",
+    "subtitle": "将 OpenRouter 集成到您的应用所需的一切",
+    "searchPlaceholder": "搜索文档...",
+    "popularGuides": "热门指南",
+    "guides": {
+      "quickstart": {
+        "title": "快速入门指南",
+        "description": "5 分钟内启动并运行 OpenRouter"
+      },
+      "authentication": {
+        "title": "认证",
+        "description": "了解如何验证您的 API 请求"
+      },
+      "modelSelection": {
+        "title": "模型选择",
+        "description": "为您的用例选择合适的模型"
+      },
+      "streaming": {
+        "title": "流式响应",
+        "description": "在您的应用中实现实时流式传输"
+      }
+    },
+    "sections": {
+      "gettingStarted": "入门指南",
+      "apiReference": "API 参考",
+      "models": "模型",
+      "security": "安全",
+      "infrastructure": "基础设施",
+      "sdks": "SDK"
+    },
+    "links": {
+      "introduction": "介绍",
+      "quickstart": "快速入门",
+      "authentication": "认证",
+      "errors": "错误处理",
+      "chatCompletions": "对话补全",
+      "embeddings": "向量嵌入",
+      "imageGeneration": "图像生成",
+      "functionCalling": "函数调用",
+      "modelOverview": "模型概览",
+      "modelComparison": "模型对比",
+      "providerRouting": "供应商路由",
+      "pricing": "定价",
+      "apiKeys": "API 密钥",
+      "rateLimits": "速率限制",
+      "dataPrivacy": "数据隐私",
+      "compliance": "合规性",
+      "uptime": "正常运行时间与可靠性",
+      "loadBalancing": "负载均衡",
+      "caching": "响应缓存",
+      "regions": "区域",
+      "python": "Python SDK",
+      "javascript": "JavaScript SDK",
+      "go": "Go SDK",
+      "community": "社区 SDK"
+    },
+    "startBuilding": "几分钟内开始构建",
+    "openaiCompatible": "OpenRouter 与 OpenAI SDK 完全兼容。只需更改 base URL 即可开始使用。",
+    "additionalResources": "其他资源",
+    "github": "GitHub",
+    "githubDesc": "查看源代码并贡献",
+    "discord": "Discord",
+    "discordDesc": "加入我们的社区",
+    "status": "状态",
+    "statusDesc": "检查系统状态"
+  },
+  "enterprise": {
+    "title": "企业解决方案",
+    "subtitle": "企业级 AI 基础设施",
+    "description": "以企业级安全、合规和支持大规模部署 AI",
+    "contactSales": "联系销售",
+    "viewDocumentation": "查看文档",
+    "trustedBy": "全球领先企业的信赖之选",
+    "features": {
+      "title": "企业级功能",
+      "subtitle": "安全、大规模部署 AI 所需的一切",
+      "security": {
+        "title": "企业安全",
+        "description": "SOC 2 Type II 认证，端到端加密"
+      },
+      "compliance": {
+        "title": "合规就绪",
+        "description": "符合 GDPR、HIPAA 和 SOC 2 的基础设施"
+      },
+      "sla": {
+        "title": "99.9% SLA",
+        "description": "企业级可靠性，保证正常运行时间"
+      },
+      "support": {
+        "title": "专属支持",
+        "description": "7x24 小时优先支持，配备专属客户经理"
+      },
+      "sso": {
+        "title": "SSO 集成",
+        "description": "支持 SAML 2.0 和 OIDC，实现无缝认证"
+      },
+      "custom": {
+        "title": "定制解决方案",
+        "description": "量身定制的集成和部署选项"
+      }
+    },
+    "whyChoose": "企业为何选择 OpenRouter",
+    "benefits": {
+      "cost": "通过智能路由降低高达 40% 的 AI 成本",
+      "provider": "无供应商锁定 - 随时切换供应商",
+      "latency": "通过全球边缘基础设施降低延迟",
+      "privacy": "完全的数据隐私 - 不使用您的数据进行训练",
+      "compliance": "通过审计日志满足合规要求",
+      "scale": "从原型到生产无缝扩展"
+    },
+    "contact": {
+      "title": "联系我们",
+      "workEmail": "工作邮箱",
+      "companyName": "公司名称",
+      "message": "留言",
+      "messagePlaceholder": "请告诉我们您的需求...",
+      "submit": "提交",
+      "emailPlaceholder": "you@company.com",
+      "companyPlaceholder": "Acme 公司"
+    }
+  },
+  "apps": {
+    "title": "应用",
+    "subtitle": "发现超过 25 万个使用 OpenRouter 构建的应用",
+    "searchPlaceholder": "搜索应用...",
+    "categories": {
+      "all": "全部",
+      "development": "开发",
+      "chat": "对话",
+      "writing": "写作",
+      "research": "研究",
+      "localAi": "本地 AI"
+    },
+    "stats": {
+      "totalApps": "应用总数",
+      "users": "用户",
+      "tokensPerMonth": "月 Token 数",
+      "modelsUsed": "使用的模型"
+    },
+    "featured": "精选应用",
+    "buildWith": {
+      "title": "使用 OpenRouter 构建",
+      "description": "加入数千名开发者的行列，使用 300+ 模型构建令人惊叹的 AI 应用。"
+    }
+  },
+  "announcements": {
+    "title": "公告",
+    "subtitle": "了解 OpenRouter 的最新新闻和更新",
+    "categories": {
+      "all": "全部",
+      "newModel": "新模型",
+      "feature": "新功能",
+      "report": "报告",
+      "enterprise": "企业版"
+    },
+    "allUpdates": "所有更新",
+    "stayInLoop": {
+      "title": "保持关注",
+      "description": "订阅我们的新闻通讯，获取最新更新"
+    }
+  },
+  "footer": {
+    "product": "产品",
+    "company": "公司",
+    "developer": "开发者",
+    "connect": "联系我们",
+    "about": "关于",
+    "announcements": "公告",
+    "careers": "招聘",
+    "partners": "合作伙伴",
+    "support": "支持",
+    "documentation": "文档",
+    "apiReference": "API 参考",
+    "sdk": "SDK",
+    "status": "状态",
+    "termsOfService": "服务条款"
+  }
+}

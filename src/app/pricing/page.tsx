@@ -1,85 +1,82 @@
+"use client";
+
 import Link from "next/link";
 import { Header } from "@/components/Header";
 import { Footer } from "@/components/Footer";
+import { useI18n } from "@/lib/i18n-context";
 import { Check, Zap, Building2, Users, Shield, ArrowRight } from "lucide-react";
 
-const plans = [
-  {
-    name: "Free",
-    price: "$0",
-    period: "forever",
-    description: "Get started with free models",
-    features: [
-      "Access to free models",
-      "1,000 requests/day",
-      "Community support",
-      "Basic analytics",
-    ],
-    cta: "Get Started",
-    ctaLink: "/keys",
-    popular: false,
-  },
-  {
-    name: "Pay as you go",
-    price: "Usage-based",
-    period: "",
-    description: "Pay only for what you use",
-    features: [
-      "Access to all models",
-      "Unlimited requests",
-      "No monthly commitment",
-      "Priority support",
-      "Advanced analytics",
-      "API key management",
-    ],
-    cta: "Add Credits",
-    ctaLink: "/keys",
-    popular: true,
-  },
-  {
-    name: "Enterprise",
-    price: "Custom",
-    period: "",
-    description: "For large-scale deployments",
-    features: [
-      "Everything in Pay as you go",
-      "Volume discounts",
-      "Dedicated support",
-      "Custom SLAs",
-      "SSO & SAML",
-      "Data privacy controls",
-      "Custom contracts",
-    ],
-    cta: "Contact Sales",
-    ctaLink: "/enterprise",
-    popular: false,
-  },
-];
-
-const faqItems = [
-  {
-    question: "How does pricing work?",
-    answer:
-      "OpenRouter uses a pay-as-you-go model. You only pay for the tokens you use, with different rates for different models. Prices are shown per million tokens.",
-  },
-  {
-    question: "Are there any monthly fees?",
-    answer:
-      "No, there are no monthly fees or subscriptions. You simply add credits to your account and use them as needed.",
-  },
-  {
-    question: "Can I switch models without changing my code?",
-    answer:
-      "Yes! OpenRouter provides a unified API, so you can switch between any of our 300+ models by simply changing the model parameter.",
-  },
-  {
-    question: "What payment methods do you accept?",
-    answer:
-      "We accept all major credit cards, cryptocurrency (via MetaMask), and wire transfers for enterprise customers.",
-  },
-];
-
 export default function PricingPage() {
+  const { t } = useI18n();
+
+  const plans = [
+    {
+      name: t("pricing.free.name"),
+      price: "$0",
+      period: "forever",
+      description: t("pricing.free.description"),
+      features: [
+        t("pricing.free.features.freeModels"),
+        t("pricing.free.features.requests"),
+        t("pricing.free.features.support"),
+        t("pricing.free.features.analytics"),
+      ],
+      cta: t("common.getStarted"),
+      ctaLink: "/keys",
+      popular: false,
+    },
+    {
+      name: t("pricing.payAsYouGo.name"),
+      price: "Usage-based",
+      period: "",
+      description: t("pricing.payAsYouGo.description"),
+      features: [
+        t("pricing.payAsYouGo.features.allModels"),
+        t("pricing.payAsYouGo.features.noMinimum"),
+        t("pricing.payAsYouGo.features.priorityRouting"),
+        t("pricing.payAsYouGo.features.emailSupport"),
+        t("pricing.payAsYouGo.features.advancedAnalytics"),
+      ],
+      cta: t("credits.addCredits"),
+      ctaLink: "/keys",
+      popular: true,
+    },
+    {
+      name: t("pricing.enterprise.name"),
+      price: "Custom",
+      period: "",
+      description: t("pricing.enterprise.description"),
+      features: [
+        t("pricing.enterprise.features.everything"),
+        t("pricing.enterprise.features.volumeDiscounts"),
+        t("pricing.enterprise.features.dedicatedSupport"),
+        t("pricing.enterprise.features.sla"),
+        t("pricing.enterprise.features.sso"),
+      ],
+      cta: t("common.contactSales"),
+      ctaLink: "/enterprise",
+      popular: false,
+    },
+  ];
+
+  const faqItems = [
+    {
+      question: t("pricing.faqItems.q1"),
+      answer: t("pricing.faqItems.a1"),
+    },
+    {
+      question: t("pricing.faqItems.q2"),
+      answer: t("pricing.faqItems.a2"),
+    },
+    {
+      question: t("pricing.faqItems.q3"),
+      answer: t("pricing.faqItems.a3"),
+    },
+    {
+      question: t("pricing.faqItems.q4"),
+      answer: t("pricing.faqItems.a4"),
+    },
+  ];
   return (
     <div className="min-h-screen flex flex-col bg-background">
       <Header />
@@ -88,10 +85,10 @@ export default function PricingPage() {
         <section className="py-20 md:py-28">
           <div className="mx-auto max-w-7xl px-6 md:px-8 text-center">
             <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold mb-6">
-              Simple, transparent pricing
+              {t("pricing.title")}
             </h1>
             <p className="text-xl text-muted-foreground max-w-2xl mx-auto">
-              Pay only for what you use. No subscriptions, no hidden fees.
+              {t("pricing.subtitle")}
             </p>
           </div>
         </section>
@@ -159,43 +156,43 @@ export default function PricingPage() {
         <section className="py-20 bg-secondary/30">
           <div className="mx-auto max-w-7xl px-6 md:px-8">
             <h2 className="text-3xl font-bold text-center mb-12">
-              Why choose OpenRouter?
+              {t("pricing.whyChoose")}
             </h2>
             <div className="grid md:grid-cols-4 gap-8">
               <div className="text-center">
                 <div className="w-14 h-14 rounded-2xl bg-primary/10 flex items-center justify-center mx-auto mb-4">
                   <Zap className="w-7 h-7 text-primary" />
                 </div>
-                <h3 className="font-semibold mb-2">One API</h3>
+                <h3 className="font-semibold mb-2">{t("pricing.oneApi")}</h3>
                 <p className="text-sm text-muted-foreground">
-                  Access 300+ models through a single, unified API
+                  {t("pricing.oneApiDesc")}
                 </p>
               </div>
               <div className="text-center">
                 <div className="w-14 h-14 rounded-2xl bg-primary/10 flex items-center justify-center mx-auto mb-4">
                   <Building2 className="w-7 h-7 text-primary" />
                 </div>
-                <h3 className="font-semibold mb-2">60+ Providers</h3>
+                <h3 className="font-semibold mb-2">{t("pricing.providers")}</h3>
                 <p className="text-sm text-muted-foreground">
-                  Automatic fallback ensures maximum uptime
+                  {t("pricing.providersDesc")}
                 </p>
               </div>
               <div className="text-center">
                 <div className="w-14 h-14 rounded-2xl bg-primary/10 flex items-center justify-center mx-auto mb-4">
                   <Users className="w-7 h-7 text-primary" />
                 </div>
-                <h3 className="font-semibold mb-2">5M+ Users</h3>
+                <h3 className="font-semibold mb-2">{t("pricing.usersCount")}</h3>
                 <p className="text-sm text-muted-foreground">
-                  Trusted by developers worldwide
+                  {t("pricing.usersDesc")}
                 </p>
               </div>
               <div className="text-center">
                 <div className="w-14 h-14 rounded-2xl bg-primary/10 flex items-center justify-center mx-auto mb-4">
                   <Shield className="w-7 h-7 text-primary" />
                 </div>
-                <h3 className="font-semibold mb-2">Data Privacy</h3>
+                <h3 className="font-semibold mb-2">{t("pricing.dataPrivacy")}</h3>
                 <p className="text-sm text-muted-foreground">
-                  Your data is never used for training
+                  {t("pricing.dataPrivacyDesc")}
                 </p>
               </div>
             </div>
@@ -206,7 +203,7 @@ export default function PricingPage() {
         <section className="py-20">
           <div className="mx-auto max-w-3xl px-6 md:px-8">
             <h2 className="text-3xl font-bold text-center mb-12">
-              Frequently asked questions
+              {t("pricing.faq")}
             </h2>
             <div className="space-y-6">
               {faqItems.map((item) => (
@@ -225,15 +222,15 @@ export default function PricingPage() {
         {/* CTA */}
         <section className="py-20 bg-secondary/30">
           <div className="mx-auto max-w-7xl px-6 md:px-8 text-center">
-            <h2 className="text-3xl font-bold mb-4">Ready to get started?</h2>
+            <h2 className="text-3xl font-bold mb-4">{t("pricing.readyToStart")}</h2>
             <p className="text-lg text-muted-foreground mb-8">
-              Create an account and start using AI models in minutes
+              {t("pricing.readyDesc")}
             </p>
             <Link
               href="/keys"
               className="inline-flex items-center gap-2 h-12 px-6 bg-primary text-primary-foreground rounded-xl font-medium hover:bg-primary/90 transition-colors"
             >
-              Get API Key
+              {t("home.getApiKey")}
               <ArrowRight className="w-4 h-4" />
             </Link>
           </div>

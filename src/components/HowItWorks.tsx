@@ -1,11 +1,16 @@
+"use client";
+
 import { Github, Wallet, CreditCard, Key, Check } from "lucide-react";
+import { useI18n } from "@/lib/i18n-context";
 
 export function HowItWorks() {
+  const { t } = useI18n();
+
   return (
     <section className="py-20 md:py-28 bg-secondary/30">
       <div className="mx-auto max-w-7xl px-6 md:px-8">
         <div className="text-center mb-14">
-          <h2 className="text-3xl sm:text-4xl font-semibold tracking-tight">How It Works</h2>
+          <h2 className="text-3xl sm:text-4xl font-semibold tracking-tight">{t("howItWorks.title")}</h2>
         </div>
 
         <div className="grid md:grid-cols-3 gap-6">
@@ -15,10 +20,10 @@ export function HowItWorks() {
               <div className="w-10 h-10 rounded-full bg-primary/20 text-primary flex items-center justify-center font-bold text-lg">
                 1
               </div>
-              <h3 className="text-xl font-semibold">Signup</h3>
+              <h3 className="text-xl font-semibold">{t("howItWorks.step1.title")}</h3>
             </div>
             <p className="text-muted-foreground mb-6 leading-relaxed">
-              Create an account to get started
+              {t("howItWorks.step1.description")}
             </p>
             <div className="space-y-3">
               <button className="w-full flex items-center gap-3 px-4 py-3 rounded-xl border border-border hover:bg-secondary hover:border-primary/30 transition-all">
@@ -28,15 +33,15 @@ export function HowItWorks() {
                   <path fill="currentColor" d="M5.84 14.09c-.22-.66-.35-1.36-.35-2.09s.13-1.43.35-2.09V7.07H2.18C1.43 8.55 1 10.22 1 12s.43 3.45 1.18 4.93l2.85-2.22.81-.62z"/>
                   <path fill="currentColor" d="M12 5.38c1.62 0 3.06.56 4.21 1.64l3.15-3.15C17.45 2.09 14.97 1 12 1 7.7 1 3.99 3.47 2.18 7.07l3.66 2.84c.87-2.6 3.3-4.53 6.16-4.53z"/>
                 </svg>
-                <span className="text-sm font-medium">Continue with Google</span>
+                <span className="text-sm font-medium">{t("auth.continueWithGoogle")}</span>
               </button>
               <button className="w-full flex items-center gap-3 px-4 py-3 rounded-xl border border-border hover:bg-secondary hover:border-primary/30 transition-all">
                 <Github className="w-5 h-5" />
-                <span className="text-sm font-medium">Continue with GitHub</span>
+                <span className="text-sm font-medium">{t("auth.continueWithGitHub")}</span>
               </button>
               <button className="w-full flex items-center gap-3 px-4 py-3 rounded-xl border border-border hover:bg-secondary hover:border-primary/30 transition-all">
                 <Wallet className="w-5 h-5" />
-                <span className="text-sm font-medium">Continue with MetaMask</span>
+                <span className="text-sm font-medium">{t("auth.continueWithMetaMask")}</span>
               </button>
             </div>
           </div>
@@ -47,10 +52,10 @@ export function HowItWorks() {
               <div className="w-10 h-10 rounded-full bg-primary/20 text-primary flex items-center justify-center font-bold text-lg">
                 2
               </div>
-              <h3 className="text-xl font-semibold">Buy credits</h3>
+              <h3 className="text-xl font-semibold">{t("howItWorks.step2.title")}</h3>
             </div>
             <p className="text-muted-foreground mb-6 leading-relaxed">
-              Credits can be used with any model or provider
+              {t("howItWorks.step2.description")}
             </p>
             <div className="space-y-3">
               <div className="flex items-center justify-between px-4 py-3 rounded-xl bg-primary/10 border border-primary/30">
@@ -81,16 +86,16 @@ export function HowItWorks() {
               <div className="w-10 h-10 rounded-full bg-primary/20 text-primary flex items-center justify-center font-bold text-lg">
                 3
               </div>
-              <h3 className="text-xl font-semibold">Get your API key</h3>
+              <h3 className="text-xl font-semibold">{t("howItWorks.step3.title")}</h3>
             </div>
             <p className="text-muted-foreground mb-6 leading-relaxed">
-              Create an API key and start making requests
+              {t("howItWorks.step3.description")}
             </p>
             <div className="space-y-4">
               <div className="px-4 py-4 rounded-xl bg-secondary">
                 <div className="flex items-center gap-2 mb-3">
                   <Key className="w-4 h-4 text-primary" />
-                  <span className="text-sm font-medium">API Key</span>
+                  <span className="text-sm font-medium">{t("howItWorks.step3.apiKey")}</span>
                 </div>
                 <code className="text-sm text-muted-foreground font-mono block bg-background px-3 py-2 rounded-lg border border-border">
                   sk-or-v1-xxxx...xxxx
@@ -98,7 +103,7 @@ export function HowItWorks() {
               </div>
               <div className="px-4 py-3 rounded-xl border border-dashed border-border bg-secondary/50">
                 <p className="text-xs text-muted-foreground text-center font-medium">
-                  Fully OpenAI compatible
+                  {t("howItWorks.step3.openaiCompatible")}
                 </p>
               </div>
             </div>

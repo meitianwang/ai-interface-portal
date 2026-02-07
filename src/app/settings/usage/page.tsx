@@ -3,6 +3,7 @@
 import { useState, useEffect } from "react";
 import { createClient } from "@/lib/supabase/client";
 import { useAuth } from "@/lib/auth-context";
+import { useI18n } from "@/lib/i18n-context";
 import { Loader2, BarChart3, TrendingUp, Calendar, Download } from "lucide-react";
 import { cn } from "@/lib/utils";
 
@@ -17,6 +18,7 @@ interface UsageRecord {
 
 export default function SettingsUsagePage() {
   const { user } = useAuth();
+  const { t } = useI18n();
   const supabase = createClient();
   const [usage, setUsage] = useState<UsageRecord[]>([]);
   const [isLoading, setIsLoading] = useState(true);
@@ -76,14 +78,14 @@ export default function SettingsUsagePage() {
       {/* Header */}
       <div className="flex items-center justify-between mb-8">
         <div>
-          <h1 className="text-2xl font-bold mb-1">Usage</h1>
+          <h1 className="text-2xl font-bold mb-1">{t("usage.title")}</h1>
           <p className="text-muted-foreground">
-            Track your API usage and costs
+            {t("usage.subtitle")}
           </p>
         </div>
         <button className="flex items-center gap-2 h-10 px-4 bg-secondary rounded-lg font-medium hover:bg-secondary/80 transition-colors text-sm">
           <Download className="w-4 h-4" />
-          Export
+          {t("usage.export")}
         </button>
       </div>
 
@@ -100,7 +102,7 @@ export default function SettingsUsagePage() {
                 : "bg-secondary hover:bg-secondary/80"
             )}
           >
-            {p === "7d" ? "Last 7 days" : p === "30d" ? "Last 30 days" : "Last 90 days"}
+            {p === "7d" ? t("usage.last7days") : p === "30d" ? t("usage.last30days") : t("usage.last90days")}
           </button>
         ))}
       </div>
@@ -112,7 +114,7 @@ export default function SettingsUsagePage() {
             <div className="w-10 h-10 rounded-lg bg-primary/10 flex items-center justify-center">
               <TrendingUp className="w-5 h-5 text-primary" />
             </div>
-            <span className="text-sm text-muted-foreground">Total Spent</span>
+            <span className="text-sm text-muted-foreground">{t("usage.totalSpent")}</span>
           </div>
           <p className="text-2xl font-bold">${totalCost.toFixed(4)}</p>
         </div>
@@ -122,7 +124,7 @@ export default function SettingsUsagePage() {
             <div className="w-10 h-10 rounded-lg bg-blue-500/10 flex items-center justify-center">
               <BarChart3 className="w-5 h-5 text-blue-500" />
             </div>
-            <span className="text-sm text-muted-foreground">Input Tokens</span>
+            <span className="text-sm text-muted-foreground">{t("usage.inputTokens")}</span>
           </div>
           <p className="text-2xl font-bold">{formatNumber(totalInputTokens)}</p>
         </div>
@@ -132,7 +134,7 @@ export default function SettingsUsagePage() {
             <div className="w-10 h-10 rounded-lg bg-emerald-500/10 flex items-center justify-center">
               <BarChart3 className="w-5 h-5 text-emerald-500" />
             </div>
-            <span className="text-sm text-muted-foreground">Output Tokens</span>
+            <span className="text-sm text-muted-foreground">{t("usage.outputTokens")}</span>
           </div>
           <p className="text-2xl font-bold">{formatNumber(totalOutputTokens)}</p>
         </div>
@@ -141,15 +143,15 @@ export default function SettingsUsagePage() {
       {/* Usage Table */}
       <div className="rounded-xl border border-border bg-card overflow-hidden">
         <div className="p-4 border-b border-border">
-          <h2 className="font-semibold">Recent Activity</h2>
+          <h2 className="font-semibold">{t("usage.recentActivity")}</h2>
         </div>
 
         {usage.length === 0 ? (
           <div className="p-8 text-center">
             <Calendar className="w-10 h-10 mx-auto mb-3 text-muted-foreground opacity-50" />
-            <p className="text-muted-foreground">No usage data for this period</p>
+            <p className="text-muted-foreground">{t("usage.noData")}</p>
             <p className="text-sm text-muted-foreground mt-1">
-              Start using the API to see your usage here
+              {t("usage.startUsing")}
             </p>
           </div>
         ) : (
@@ -158,19 +160,19 @@ export default function SettingsUsagePage() {
               <thead className="bg-secondary/50">
                 <tr>
                   <th className="text-left text-sm font-medium text-muted-foreground px-4 py-3">
-                    Model
+                    {t("usage.model")}
                   </th>
                   <th className="text-right text-sm font-medium text-muted-foreground px-4 py-3">
-                    Input
+                    {t("usage.input")}
                   </th>
                   <th className="text-right text-sm font-medium text-muted-foreground px-4 py-3">
-                    Output
+                    {t("usage.output")}
                   </th>
                   <th className="text-right text-sm font-medium text-muted-foreground px-4 py-3">
-                    Cost
+                    {t("usage.cost")}
                   </th>
                   <th className="text-right text-sm font-medium text-muted-foreground px-4 py-3">
-                    Date
+                    {t("usage.date")}
                   </th>
                 </tr>
               </thead>

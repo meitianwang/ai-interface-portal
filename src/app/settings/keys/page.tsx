@@ -3,6 +3,7 @@
 import { useState, useEffect } from "react";
 import { createClient } from "@/lib/supabase/client";
 import { useAuth } from "@/lib/auth-context";
+import { useI18n } from "@/lib/i18n-context";
 import {
   Key,
   Plus,
@@ -29,6 +30,7 @@ interface ApiKey {
 
 export default function SettingsKeysPage() {
   const { user } = useAuth();
+  const { t } = useI18n();
   const supabase = createClient();
   const [apiKeys, setApiKeys] = useState<ApiKey[]>([]);
   const [credits, setCredits] = useState<number>(0);
@@ -162,9 +164,9 @@ export default function SettingsKeysPage() {
       {/* Header */}
       <div className="flex items-center justify-between mb-8">
         <div>
-          <h1 className="text-2xl font-bold mb-1">API Keys</h1>
+          <h1 className="text-2xl font-bold mb-1">{t("keys.title")}</h1>
           <p className="text-muted-foreground">
-            Manage your API keys for accessing OpenRouter
+            {t("keys.subtitle")}
           </p>
         </div>
         <button
@@ -172,7 +174,7 @@ export default function SettingsKeysPage() {
           className="flex items-center gap-2 h-10 px-4 bg-primary text-primary-foreground rounded-lg font-medium hover:bg-primary/90 transition-colors"
         >
           <Plus className="w-4 h-4" />
-          Create Key
+          {t("keys.createKey")}
         </button>
       </div>
 
@@ -184,12 +186,12 @@ export default function SettingsKeysPage() {
               <CreditCard className="w-6 h-6 text-primary" />
             </div>
             <div>
-              <p className="text-sm text-muted-foreground">Available Credits</p>
+              <p className="text-sm text-muted-foreground">{t("credits.availableCredits")}</p>
               <p className="text-2xl font-bold">${credits.toFixed(2)}</p>
             </div>
           </div>
           <button className="flex items-center gap-2 h-10 px-4 bg-secondary rounded-lg font-medium hover:bg-secondary/80 transition-colors">
-            Add Credits
+            {t("credits.addCredits")}
             <ArrowRight className="w-4 h-4" />
           </button>
         </div>
@@ -201,16 +203,16 @@ export default function SettingsKeysPage() {
           <div className="w-12 h-12 rounded-xl bg-secondary flex items-center justify-center mx-auto mb-4">
             <Key className="w-6 h-6 text-muted-foreground" />
           </div>
-          <h3 className="font-medium mb-2">No API keys yet</h3>
+          <h3 className="font-medium mb-2">{t("keys.noKeys")}</h3>
           <p className="text-sm text-muted-foreground mb-4">
-            Create your first API key to start using OpenRouter
+            {t("keys.createFirst")}
           </p>
           <button
             onClick={() => setShowCreateModal(true)}
             className="inline-flex items-center gap-2 h-10 px-4 bg-primary text-primary-foreground rounded-lg font-medium hover:bg-primary/90 transition-colors"
           >
             <Plus className="w-4 h-4" />
-            Create Key
+            {t("keys.createKey")}
           </button>
         </div>
       ) : (
@@ -228,7 +230,7 @@ export default function SettingsKeysPage() {
                   <div>
                     <p className="font-medium">{apiKey.name}</p>
                     <p className="text-sm text-muted-foreground">
-                      Created {formatDate(apiKey.created_at)}
+                      {t("keys.created")} {formatDate(apiKey.created_at)}
                     </p>
                   </div>
                 </div>
@@ -271,7 +273,7 @@ export default function SettingsKeysPage() {
                 </code>
               </div>
               <p className="text-xs text-muted-foreground mt-3">
-                Last used: {apiKey.last_used_at ? formatDate(apiKey.last_used_at) : "Never"}
+                {t("keys.lastUsed")}: {apiKey.last_used_at ? formatDate(apiKey.last_used_at) : t("keys.never")}
               </p>
             </div>
           ))}
@@ -285,10 +287,9 @@ export default function SettingsKeysPage() {
             <Shield className="w-5 h-5 text-primary" />
           </div>
           <div>
-            <h3 className="font-medium mb-1">Keep your keys secure</h3>
+            <h3 className="font-medium mb-1">{t("keys.keepSecure")}</h3>
             <p className="text-sm text-muted-foreground">
-              Never share your API keys or commit them to version control.
-              Use environment variables to store them securely.
+              {t("keys.securityTip")}
             </p>
           </div>
         </div>
@@ -304,18 +305,18 @@ export default function SettingsKeysPage() {
                   <div className="w-10 h-10 rounded-lg bg-primary/10 flex items-center justify-center">
                     <Check className="w-5 h-5 text-primary" />
                   </div>
-                  <h2 className="text-xl font-bold">API Key Created</h2>
+                  <h2 className="text-xl font-bold">{t("keys.keyCreated")}</h2>
                 </div>
                 <div className="mb-4 p-4 bg-yellow-500/10 border border-yellow-500/20 rounded-xl">
                   <div className="flex items-start gap-3">
                     <AlertCircle className="w-5 h-5 text-yellow-500 flex-shrink-0 mt-0.5" />
                     <p className="text-sm text-yellow-500">
-                      Make sure to copy your API key now. You won&apos;t be able to see it again!
+                      {t("keys.copyWarning")}
                     </p>
                   </div>
                 </div>
                 <div className="mb-6">
-                  <label className="block text-sm font-medium mb-2">Your API Key</label>
+                  <label className="block text-sm font-medium mb-2">{t("keys.yourApiKey")}</label>
                   <div className="relative">
                     <code className="block w-full px-3 py-3 bg-secondary rounded-lg font-mono text-sm break-all">
                       {newlyCreatedKey}
@@ -343,19 +344,19 @@ export default function SettingsKeysPage() {
                   }}
                   className="w-full h-10 bg-primary text-primary-foreground rounded-lg font-medium hover:bg-primary/90 transition-colors"
                 >
-                  Done
+                  {t("common.done")}
                 </button>
               </>
             ) : (
               <>
-                <h2 className="text-xl font-bold mb-4">Create API Key</h2>
+                <h2 className="text-xl font-bold mb-4">{t("keys.createKey")}</h2>
                 <div className="mb-6">
-                  <label className="block text-sm font-medium mb-2">Key name</label>
+                  <label className="block text-sm font-medium mb-2">{t("keys.keyName")}</label>
                   <input
                     type="text"
                     value={newKeyName}
                     onChange={(e) => setNewKeyName(e.target.value)}
-                    placeholder="e.g., Production, Development"
+                    placeholder={t("keys.keyNamePlaceholder")}
                     className="w-full h-10 px-4 bg-secondary rounded-lg text-sm placeholder:text-muted-foreground border border-transparent focus:outline-none focus:ring-2 focus:ring-primary/50"
                     disabled={isCreating}
                   />
@@ -366,7 +367,7 @@ export default function SettingsKeysPage() {
                     disabled={isCreating}
                     className="flex-1 h-10 bg-secondary rounded-lg font-medium hover:bg-secondary/80 transition-colors disabled:opacity-50"
                   >
-                    Cancel
+                    {t("common.cancel")}
                   </button>
                   <button
                     onClick={handleCreate}
@@ -376,10 +377,10 @@ export default function SettingsKeysPage() {
                     {isCreating ? (
                       <>
                         <Loader2 className="w-4 h-4 animate-spin" />
-                        Creating...
+                        {t("common.creating")}
                       </>
                     ) : (
-                      "Create"
+                      t("common.create")
                     )}
                   </button>
                 </div>

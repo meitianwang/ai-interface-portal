@@ -1,6 +1,9 @@
+"use client";
+
 import Link from "next/link";
 import { Header } from "@/components/Header";
 import { Footer } from "@/components/Footer";
+import { useI18n } from "@/lib/i18n-context";
 import {
   Book,
   Code,
@@ -13,93 +16,94 @@ import {
   Search,
 } from "lucide-react";
 
-const sections = [
-  {
-    title: "Getting Started",
-    icon: Zap,
-    links: [
-      { name: "Quick Start", href: "/docs/quick-start" },
-      { name: "Authentication", href: "/docs/authentication" },
-      { name: "Making Requests", href: "/docs/requests" },
-      { name: "Handling Responses", href: "/docs/responses" },
-    ],
-  },
-  {
-    title: "API Reference",
-    icon: Code,
-    links: [
-      { name: "Chat Completions", href: "/docs/api/chat" },
-      { name: "Completions", href: "/docs/api/completions" },
-      { name: "Models", href: "/docs/api/models" },
-      { name: "Credits", href: "/docs/api/credits" },
-    ],
-  },
-  {
-    title: "Models",
-    icon: Book,
-    links: [
-      { name: "Model Overview", href: "/docs/models" },
-      { name: "Model Parameters", href: "/docs/parameters" },
-      { name: "Pricing", href: "/docs/pricing" },
-      { name: "Rate Limits", href: "/docs/rate-limits" },
-    ],
-  },
-  {
-    title: "Security",
-    icon: Shield,
-    links: [
-      { name: "Data Privacy", href: "/docs/data-privacy" },
-      { name: "API Keys", href: "/docs/api-keys" },
-      { name: "Best Practices", href: "/docs/security" },
-      { name: "Compliance", href: "/docs/compliance" },
-    ],
-  },
-  {
-    title: "Infrastructure",
-    icon: Server,
-    links: [
-      { name: "Providers", href: "/docs/providers" },
-      { name: "Uptime & SLAs", href: "/docs/uptime" },
-      { name: "Fallback Routing", href: "/docs/fallback" },
-      { name: "Caching", href: "/docs/caching" },
-    ],
-  },
-  {
-    title: "SDKs",
-    icon: Key,
-    links: [
-      { name: "Python SDK", href: "/docs/sdk/python" },
-      { name: "Node.js SDK", href: "/docs/sdk/node" },
-      { name: "OpenAI Compatible", href: "/docs/sdk/openai" },
-      { name: "REST API", href: "/docs/sdk/rest" },
-    ],
-  },
-];
-
-const popularGuides = [
-  {
-    title: "Quick Start Guide",
-    description: "Get up and running with OpenRouter in 5 minutes",
-    href: "/docs/quick-start",
-  },
-  {
-    title: "Switching from OpenAI",
-    description: "Migrate your existing OpenAI integration",
-    href: "/docs/migration/openai",
-  },
-  {
-    title: "Model Selection Guide",
-    description: "Choose the right model for your use case",
-    href: "/docs/guides/model-selection",
-  },
-  {
-    title: "Cost Optimization",
-    description: "Tips to reduce your API costs",
-    href: "/docs/guides/cost-optimization",
-  },
-];
-
 export default function DocsPage() {
+  const { t } = useI18n();
+
+  const sections = [
+    {
+      title: t("docs.sections.gettingStarted"),
+      icon: Zap,
+      links: [
+        { name: t("docs.links.quickstart"), href: "/docs/quick-start" },
+        { name: t("docs.links.authentication"), href: "/docs/authentication" },
+        { name: "Making Requests", href: "/docs/requests" },
+        { name: "Handling Responses", href: "/docs/responses" },
+      ],
+    },
+    {
+      title: t("docs.sections.apiReference"),
+      icon: Code,
+      links: [
+        { name: t("docs.links.chatCompletions"), href: "/docs/api/chat" },
+        { name: "Completions", href: "/docs/api/completions" },
+        { name: t("docs.sections.models"), href: "/docs/api/models" },
+        { name: t("credits.title"), href: "/docs/api/credits" },
+      ],
+    },
+    {
+      title: t("docs.sections.models"),
+      icon: Book,
+      links: [
+        { name: t("docs.links.modelOverview"), href: "/docs/models" },
+        { name: "Model Parameters", href: "/docs/parameters" },
+        { name: t("docs.links.pricing"), href: "/docs/pricing" },
+        { name: t("docs.links.rateLimits"), href: "/docs/rate-limits" },
+      ],
+    },
+    {
+      title: t("docs.sections.security"),
+      icon: Shield,
+      links: [
+        { name: t("docs.links.dataPrivacy"), href: "/docs/data-privacy" },
+        { name: t("docs.links.apiKeys"), href: "/docs/api-keys" },
+        { name: "Best Practices", href: "/docs/security" },
+        { name: t("docs.links.compliance"), href: "/docs/compliance" },
+      ],
+    },
+    {
+      title: t("docs.sections.infrastructure"),
+      icon: Server,
+      links: [
+        { name: "Providers", href: "/docs/providers" },
+        { name: t("docs.links.uptime"), href: "/docs/uptime" },
+        { name: "Fallback Routing", href: "/docs/fallback" },
+        { name: t("docs.links.caching"), href: "/docs/caching" },
+      ],
+    },
+    {
+      title: t("docs.sections.sdks"),
+      icon: Key,
+      links: [
+        { name: t("docs.links.python"), href: "/docs/sdk/python" },
+        { name: "Node.js SDK", href: "/docs/sdk/node" },
+        { name: "OpenAI Compatible", href: "/docs/sdk/openai" },
+        { name: "REST API", href: "/docs/sdk/rest" },
+      ],
+    },
+  ];
+
+  const popularGuides = [
+    {
+      title: t("docs.guides.quickstart.title"),
+      description: t("docs.guides.quickstart.description"),
+      href: "/docs/quick-start",
+    },
+    {
+      title: "Switching from OpenAI",
+      description: "Migrate your existing OpenAI integration",
+      href: "/docs/migration/openai",
+    },
+    {
+      title: t("docs.guides.modelSelection.title"),
+      description: t("docs.guides.modelSelection.description"),
+      href: "/docs/guides/model-selection",
+    },
+    {
+      title: "Cost Optimization",
+      description: "Tips to reduce your API costs",
+      href: "/docs/guides/cost-optimization",
+    },
+  ];
   return (
     <div className="min-h-screen flex flex-col bg-background">
       <Header />
@@ -109,11 +113,10 @@ export default function DocsPage() {
           <div className="mx-auto max-w-7xl px-6 md:px-8">
             <div className="max-w-3xl">
               <h1 className="text-4xl md:text-5xl font-bold mb-4">
-                Documentation
+                {t("docs.title")}
               </h1>
               <p className="text-xl text-muted-foreground mb-8">
-                Everything you need to integrate OpenRouter into your
-                applications
+                {t("docs.subtitle")}
               </p>
 
               {/* Search */}
@@ -121,7 +124,7 @@ export default function DocsPage() {
                 <Search className="absolute left-4 top-1/2 -translate-y-1/2 w-5 h-5 text-muted-foreground" />
                 <input
                   type="text"
-                  placeholder="Search documentation..."
+                  placeholder={t("docs.searchPlaceholder")}
                   className="w-full h-12 pl-12 pr-4 bg-secondary rounded-xl text-sm placeholder:text-muted-foreground border border-transparent focus:outline-none focus:ring-2 focus:ring-primary/50 focus:border-primary/50"
                 />
               </div>
@@ -132,7 +135,7 @@ export default function DocsPage() {
         {/* Popular Guides */}
         <section className="py-12 border-b border-border">
           <div className="mx-auto max-w-7xl px-6 md:px-8">
-            <h2 className="text-lg font-semibold mb-6">Popular Guides</h2>
+            <h2 className="text-lg font-semibold mb-6">{t("docs.popularGuides")}</h2>
             <div className="grid sm:grid-cols-2 lg:grid-cols-4 gap-4">
               {popularGuides.map((guide) => (
                 <Link
@@ -189,17 +192,16 @@ export default function DocsPage() {
             <div className="grid lg:grid-cols-2 gap-12 items-center">
               <div>
                 <h2 className="text-3xl font-bold mb-4">
-                  Start building in minutes
+                  {t("docs.startBuilding")}
                 </h2>
                 <p className="text-lg text-muted-foreground mb-6">
-                  OpenRouter is fully compatible with the OpenAI SDK. Just
-                  change the base URL and you&apos;re ready to go.
+                  {t("docs.openaiCompatible")}
                 </p>
                 <Link
                   href="/docs/quick-start"
                   className="inline-flex items-center gap-2 text-primary hover:underline font-medium"
                 >
-                  Read the quick start guide
+                  {t("common.readTheDocs")}
                   <ArrowRight className="w-4 h-4" />
                 </Link>
               </div>
@@ -231,7 +233,7 @@ console.log(response.choices[0].message);`}
         {/* Resources */}
         <section className="py-12">
           <div className="mx-auto max-w-7xl px-6 md:px-8">
-            <h2 className="text-2xl font-bold mb-8">Additional Resources</h2>
+            <h2 className="text-2xl font-bold mb-8">{t("docs.additionalResources")}</h2>
             <div className="grid sm:grid-cols-3 gap-6">
               <a
                 href="https://github.com/openrouter"
@@ -240,9 +242,9 @@ console.log(response.choices[0].message);`}
                 className="flex items-center justify-between p-5 rounded-xl border border-border hover:border-primary/50 transition-colors group"
               >
                 <div>
-                  <h3 className="font-medium mb-1">GitHub</h3>
+                  <h3 className="font-medium mb-1">{t("docs.github")}</h3>
                   <p className="text-sm text-muted-foreground">
-                    Example code and SDKs
+                    {t("docs.githubDesc")}
                   </p>
                 </div>
                 <ExternalLink className="w-5 h-5 text-muted-foreground group-hover:text-primary transition-colors" />
@@ -254,9 +256,9 @@ console.log(response.choices[0].message);`}
                 className="flex items-center justify-between p-5 rounded-xl border border-border hover:border-primary/50 transition-colors group"
               >
                 <div>
-                  <h3 className="font-medium mb-1">Discord</h3>
+                  <h3 className="font-medium mb-1">{t("docs.discord")}</h3>
                   <p className="text-sm text-muted-foreground">
-                    Community support
+                    {t("docs.discordDesc")}
                   </p>
                 </div>
                 <ExternalLink className="w-5 h-5 text-muted-foreground group-hover:text-primary transition-colors" />
@@ -268,9 +270,9 @@ console.log(response.choices[0].message);`}
                 className="flex items-center justify-between p-5 rounded-xl border border-border hover:border-primary/50 transition-colors group"
               >
                 <div>
-                  <h3 className="font-medium mb-1">Status</h3>
+                  <h3 className="font-medium mb-1">{t("docs.status")}</h3>
                   <p className="text-sm text-muted-foreground">
-                    System status page
+                    {t("docs.statusDesc")}
                   </p>
                 </div>
                 <ExternalLink className="w-5 h-5 text-muted-foreground group-hover:text-primary transition-colors" />

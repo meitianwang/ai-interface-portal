@@ -3,6 +3,7 @@
 import { useState, useEffect } from "react";
 import { createClient } from "@/lib/supabase/client";
 import { useAuth } from "@/lib/auth-context";
+import { useI18n } from "@/lib/i18n-context";
 import { Loader2, Check, Camera, User } from "lucide-react";
 
 interface Profile {
@@ -17,6 +18,7 @@ interface Profile {
 
 export default function SettingsProfilePage() {
   const { user } = useAuth();
+  const { t } = useI18n();
   const supabase = createClient();
   const [profile, setProfile] = useState<Profile>({
     full_name: "",
@@ -121,15 +123,15 @@ export default function SettingsProfilePage() {
       {/* Header */}
       <div className="flex items-center justify-between mb-8">
         <div>
-          <h1 className="text-2xl font-bold mb-1">Profile</h1>
+          <h1 className="text-2xl font-bold mb-1">{t("profile.title")}</h1>
           <p className="text-muted-foreground">
-            Manage your public profile information
+            {t("profile.subtitle")}
           </p>
         </div>
         {saved && (
           <div className="flex items-center gap-2 text-primary text-sm">
             <Check className="w-4 h-4" />
-            Saved
+            {t("common.saved")}
           </div>
         )}
       </div>
@@ -137,7 +139,7 @@ export default function SettingsProfilePage() {
       <form onSubmit={handleSubmit} className="space-y-8">
         {/* Avatar */}
         <div className="rounded-xl border border-border bg-card p-6">
-          <h2 className="font-semibold mb-4">Avatar</h2>
+          <h2 className="font-semibold mb-4">{t("profile.avatar")}</h2>
           <div className="flex items-center gap-6">
             <div className="relative">
               {profile.avatar_url ? (
@@ -159,18 +161,18 @@ export default function SettingsProfilePage() {
               </button>
             </div>
             <div className="text-sm text-muted-foreground">
-              <p>Click the camera icon to upload a new avatar.</p>
-              <p>Recommended size: 256x256 pixels</p>
+              <p>{t("profile.avatarHint")}</p>
+              <p>{t("profile.avatarSize")}</p>
             </div>
           </div>
         </div>
 
         {/* Basic Info */}
         <div className="rounded-xl border border-border bg-card p-6">
-          <h2 className="font-semibold mb-4">Basic Information</h2>
+          <h2 className="font-semibold mb-4">{t("profile.basicInfo")}</h2>
           <div className="grid gap-4 md:grid-cols-2">
             <div>
-              <label className="block text-sm font-medium mb-2">Full Name</label>
+              <label className="block text-sm font-medium mb-2">{t("profile.fullName")}</label>
               <input
                 type="text"
                 value={profile.full_name}
@@ -180,7 +182,7 @@ export default function SettingsProfilePage() {
               />
             </div>
             <div>
-              <label className="block text-sm font-medium mb-2">Display Name</label>
+              <label className="block text-sm font-medium mb-2">{t("profile.displayName")}</label>
               <input
                 type="text"
                 value={profile.display_name}
@@ -189,7 +191,7 @@ export default function SettingsProfilePage() {
                 className="w-full h-10 px-4 bg-secondary rounded-lg text-sm placeholder:text-muted-foreground border border-transparent focus:outline-none focus:ring-2 focus:ring-primary/50"
               />
               <p className="text-xs text-muted-foreground mt-1">
-                This will be shown publicly if you share apps
+                {t("profile.displayNameHint")}
               </p>
             </div>
           </div>
@@ -197,25 +199,25 @@ export default function SettingsProfilePage() {
 
         {/* Bio */}
         <div className="rounded-xl border border-border bg-card p-6">
-          <h2 className="font-semibold mb-4">Bio</h2>
+          <h2 className="font-semibold mb-4">{t("profile.bio")}</h2>
           <textarea
             value={profile.bio}
             onChange={(e) => setProfile({ ...profile, bio: e.target.value })}
-            placeholder="Tell us a bit about yourself..."
+            placeholder={t("profile.bioPlaceholder")}
             rows={3}
             className="w-full px-4 py-3 bg-secondary rounded-lg text-sm placeholder:text-muted-foreground border border-transparent focus:outline-none focus:ring-2 focus:ring-primary/50 resize-none"
           />
           <p className="text-xs text-muted-foreground mt-1">
-            {profile.bio.length}/160 characters
+            {profile.bio.length}/160 {t("profile.characters")}
           </p>
         </div>
 
         {/* Links & Location */}
         <div className="rounded-xl border border-border bg-card p-6">
-          <h2 className="font-semibold mb-4">Additional Information</h2>
+          <h2 className="font-semibold mb-4">{t("profile.additionalInfo")}</h2>
           <div className="grid gap-4 md:grid-cols-2">
             <div>
-              <label className="block text-sm font-medium mb-2">Website</label>
+              <label className="block text-sm font-medium mb-2">{t("profile.website")}</label>
               <input
                 type="url"
                 value={profile.website}
@@ -225,7 +227,7 @@ export default function SettingsProfilePage() {
               />
             </div>
             <div>
-              <label className="block text-sm font-medium mb-2">Company</label>
+              <label className="block text-sm font-medium mb-2">{t("profile.company")}</label>
               <input
                 type="text"
                 value={profile.company}
@@ -235,7 +237,7 @@ export default function SettingsProfilePage() {
               />
             </div>
             <div className="md:col-span-2">
-              <label className="block text-sm font-medium mb-2">Location</label>
+              <label className="block text-sm font-medium mb-2">{t("profile.location")}</label>
               <input
                 type="text"
                 value={profile.location}
@@ -249,7 +251,7 @@ export default function SettingsProfilePage() {
 
         {/* Email (read-only) */}
         <div className="rounded-xl border border-border bg-card p-6">
-          <h2 className="font-semibold mb-4">Email</h2>
+          <h2 className="font-semibold mb-4">{t("profile.email")}</h2>
           <div className="flex items-center gap-4">
             <input
               type="email"
@@ -258,7 +260,7 @@ export default function SettingsProfilePage() {
               className="flex-1 h-10 px-4 bg-secondary/50 rounded-lg text-sm text-muted-foreground border border-transparent cursor-not-allowed"
             />
             <span className="text-xs text-muted-foreground">
-              Email cannot be changed
+              {t("profile.emailCannotChange")}
             </span>
           </div>
         </div>
@@ -273,10 +275,10 @@ export default function SettingsProfilePage() {
             {isSaving ? (
               <>
                 <Loader2 className="w-4 h-4 animate-spin" />
-                Saving...
+                {t("common.saving")}
               </>
             ) : (
-              "Save Changes"
+              t("common.saveChanges")
             )}
           </button>
         </div>

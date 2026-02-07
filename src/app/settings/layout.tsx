@@ -6,17 +6,9 @@ import { useEffect } from "react";
 import { Header } from "@/components/Header";
 import { Footer } from "@/components/Footer";
 import { useAuth } from "@/lib/auth-context";
+import { useI18n } from "@/lib/i18n-context";
 import { Key, CreditCard, User, Settings, BarChart3, Shield, Loader2 } from "lucide-react";
 import { cn } from "@/lib/utils";
-
-const settingsNav = [
-  { name: "API Keys", href: "/settings/keys", icon: Key },
-  { name: "Credits", href: "/settings/credits", icon: CreditCard },
-  { name: "Usage", href: "/settings/usage", icon: BarChart3 },
-  { name: "Profile", href: "/settings/profile", icon: User },
-  { name: "Preferences", href: "/settings/preferences", icon: Settings },
-  { name: "Privacy", href: "/settings/privacy", icon: Shield },
-];
 
 export default function SettingsLayout({
   children,
@@ -26,6 +18,16 @@ export default function SettingsLayout({
   const pathname = usePathname();
   const router = useRouter();
   const { user, isLoading } = useAuth();
+  const { t } = useI18n();
+
+  const settingsNav = [
+    { name: t("settings.apiKeys"), href: "/settings/keys", icon: Key },
+    { name: t("settings.credits"), href: "/settings/credits", icon: CreditCard },
+    { name: t("settings.usage"), href: "/settings/usage", icon: BarChart3 },
+    { name: t("settings.profile"), href: "/settings/profile", icon: User },
+    { name: t("settings.preferences"), href: "/settings/preferences", icon: Settings },
+    { name: t("settings.privacy"), href: "/settings/privacy", icon: Shield },
+  ];
 
   useEffect(() => {
     if (!isLoading && !user) {

@@ -1,13 +1,18 @@
+"use client";
+
 import Link from "next/link";
-import { ArrowRight, Shield, Zap, Database, Lock, CheckCircle } from "lucide-react";
+import { ArrowRight, Shield, Zap, CheckCircle } from "lucide-react";
+import { useI18n } from "@/lib/i18n-context";
 
 export function Features() {
+  const { t } = useI18n();
+
   return (
     <section className="py-20 md:py-28">
       <div className="mx-auto max-w-7xl px-6 md:px-8">
         <div className="text-center mb-14">
           <h2 className="text-3xl sm:text-4xl font-semibold tracking-tight">
-            OpenRouter Features
+            {t("features.title")}
           </h2>
         </div>
 
@@ -29,19 +34,19 @@ export function Features() {
                   <div className="w-0.5 h-8 bg-gradient-to-t from-transparent to-primary"></div>
                 </div>
                 <div className="w-28 h-12 bg-primary rounded-lg flex items-center justify-center text-sm text-primary-foreground font-medium shadow-lg shadow-primary/30">
-                  Your App
+                  {t("features.oneApi.yourApp")}
                 </div>
               </div>
             </div>
-            <h3 className="text-xl font-semibold mb-2">One API for Any Model</h3>
+            <h3 className="text-xl font-semibold mb-2">{t("features.oneApi.title")}</h3>
             <p className="text-muted-foreground mb-4 leading-relaxed">
-              Access all major models through a single, unified interface
+              {t("features.oneApi.description")}
             </p>
             <Link
               href="/models"
               className="inline-flex items-center text-sm font-medium text-primary hover:underline gap-1.5 group-hover:gap-2 transition-all"
             >
-              Browse all
+              {t("common.browseAll")}
               <ArrowRight className="w-4 h-4" />
             </Link>
           </div>
@@ -73,15 +78,15 @@ export function Features() {
                 </div>
               </div>
             </div>
-            <h3 className="text-xl font-semibold mb-2">Higher Availability</h3>
+            <h3 className="text-xl font-semibold mb-2">{t("features.availability.title")}</h3>
             <p className="text-muted-foreground mb-4 leading-relaxed">
-              Reliable AI models via our distributed infrastructure
+              {t("features.availability.description")}
             </p>
             <Link
               href="/docs/uptime"
               className="inline-flex items-center text-sm font-medium text-primary hover:underline gap-1.5 group-hover:gap-2 transition-all"
             >
-              Learn more
+              {t("common.learnMore")}
               <ArrowRight className="w-4 h-4" />
             </Link>
           </div>
@@ -106,15 +111,15 @@ export function Features() {
                 </div>
               </div>
             </div>
-            <h3 className="text-xl font-semibold mb-2">Price and Performance</h3>
+            <h3 className="text-xl font-semibold mb-2">{t("features.pricing.title")}</h3>
             <p className="text-muted-foreground mb-4 leading-relaxed">
-              Keep costs in check without sacrificing speed
+              {t("features.pricing.description")}
             </p>
             <Link
               href="/pricing"
               className="inline-flex items-center text-sm font-medium text-primary hover:underline gap-1.5 group-hover:gap-2 transition-all"
             >
-              Learn more
+              {t("common.learnMore")}
               <ArrowRight className="w-4 h-4" />
             </Link>
           </div>
@@ -129,28 +134,28 @@ export function Features() {
                 <div className="space-y-3">
                   <div className="flex items-center gap-2.5">
                     <CheckCircle className="w-5 h-5 text-emerald-500" />
-                    <span className="text-sm text-foreground">No training</span>
+                    <span className="text-sm text-foreground">{t("features.privacy.noTraining")}</span>
                   </div>
                   <div className="flex items-center gap-2.5">
                     <CheckCircle className="w-5 h-5 text-emerald-500" />
-                    <span className="text-sm text-foreground">No logging</span>
+                    <span className="text-sm text-foreground">{t("features.privacy.noLogging")}</span>
                   </div>
                   <div className="flex items-center gap-2.5">
                     <CheckCircle className="w-5 h-5 text-emerald-500" />
-                    <span className="text-sm text-foreground">GDPR compliant</span>
+                    <span className="text-sm text-foreground">{t("features.privacy.gdprCompliant")}</span>
                   </div>
                 </div>
               </div>
             </div>
-            <h3 className="text-xl font-semibold mb-2">Custom Data Policies</h3>
+            <h3 className="text-xl font-semibold mb-2">{t("features.privacy.title")}</h3>
             <p className="text-muted-foreground mb-4 leading-relaxed">
-              Protect your organization with fine grained data policies
+              {t("features.privacy.description")}
             </p>
             <Link
               href="/docs/data-privacy"
               className="inline-flex items-center text-sm font-medium text-primary hover:underline gap-1.5 group-hover:gap-2 transition-all"
             >
-              View docs
+              {t("common.viewDocs")}
               <ArrowRight className="w-4 h-4" />
             </Link>
           </div>

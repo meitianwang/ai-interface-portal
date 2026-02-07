@@ -1,5 +1,8 @@
+"use client";
+
 import Link from "next/link";
 import { ArrowRight, TrendingUp, TrendingDown } from "lucide-react";
+import { useI18n } from "@/lib/i18n-context";
 
 const models = [
   {
@@ -35,6 +38,8 @@ const models = [
 ];
 
 export function FeaturedModels() {
+  const { t } = useI18n();
+
   return (
     <section className="py-20 md:py-28">
       <div className="mx-auto max-w-7xl px-6 md:px-8">
@@ -42,18 +47,18 @@ export function FeaturedModels() {
         <div className="flex items-center justify-between mb-10">
           <div>
             <div className="flex items-center gap-3 mb-2">
-              <h2 className="text-3xl sm:text-4xl font-semibold tracking-tight">Featured Models</h2>
+              <h2 className="text-3xl sm:text-4xl font-semibold tracking-tight">{t("featuredModels.title")}</h2>
               <ArrowRight className="w-5 h-5 text-muted-foreground" />
             </div>
             <p className="text-muted-foreground">
-              300+ active models on 60+ providers
+              {t("featuredModels.subtitle")}
             </p>
           </div>
           <Link
             href="/models"
             className="hidden sm:inline-flex items-center text-sm font-medium text-primary hover:underline gap-1.5"
           >
-            View all
+            {t("common.viewAll")}
             <ArrowRight className="w-4 h-4" />
           </Link>
         </div>
@@ -73,7 +78,7 @@ export function FeaturedModels() {
                 </div>
                 {model.isNew && (
                   <span className="px-2.5 py-1 text-xs font-semibold bg-emerald-500/20 text-emerald-400 rounded-full">
-                    New
+                    {t("common.new")}
                   </span>
                 )}
               </div>
@@ -86,11 +91,11 @@ export function FeaturedModels() {
               {model.tokens && (
                 <div className="flex items-center justify-between pt-5 border-t border-border">
                   <div>
-                    <p className="text-xs text-muted-foreground mb-1">Tokens</p>
+                    <p className="text-xs text-muted-foreground mb-1">{t("featuredModels.tokens")}</p>
                     <p className="font-semibold">{model.tokens}</p>
                   </div>
                   <div className="text-right">
-                    <p className="text-xs text-muted-foreground mb-1">Weekly Trend</p>
+                    <p className="text-xs text-muted-foreground mb-1">{t("featuredModels.weeklyTrend")}</p>
                     <p className={`font-semibold flex items-center gap-1 justify-end ${model.trendUp ? "text-emerald-500" : "text-red-500"}`}>
                       {model.trendUp ? (
                         <TrendingUp className="w-4 h-4" />
@@ -123,7 +128,7 @@ export function FeaturedModels() {
             href="/models"
             className="inline-flex items-center text-sm font-medium text-primary hover:underline gap-1.5"
           >
-            View all
+            {t("common.viewAll")}
             <ArrowRight className="w-4 h-4" />
           </Link>
         </div>

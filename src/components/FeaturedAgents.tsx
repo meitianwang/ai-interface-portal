@@ -1,28 +1,33 @@
+"use client";
+
 import Link from "next/link";
 import { ArrowRight, ExternalLink } from "lucide-react";
-
-const agents = [
-  {
-    name: "Replit",
-    description: "The easiest way to go from idea to app",
-    logo: "R",
-    logoColor: "bg-orange-500",
-  },
-  {
-    name: "BLACKBOXAI",
-    description: "AI agent for builders",
-    logo: "B",
-    logoColor: "bg-violet-600",
-  },
-  {
-    name: "Kilo Code",
-    description: "Everything you need for agentic development",
-    logo: "K",
-    logoColor: "bg-blue-500",
-  },
-];
+import { useI18n } from "@/lib/i18n-context";
 
 export function FeaturedAgents() {
+  const { t } = useI18n();
+
+  const agents = [
+    {
+      name: "Replit",
+      description: t("featuredAgents.agents.replit"),
+      logo: "R",
+      logoColor: "bg-orange-500",
+    },
+    {
+      name: "BLACKBOXAI",
+      description: t("featuredAgents.agents.blackboxai"),
+      logo: "B",
+      logoColor: "bg-violet-600",
+    },
+    {
+      name: "Kilo Code",
+      description: t("featuredAgents.agents.kiloCode"),
+      logo: "K",
+      logoColor: "bg-blue-500",
+    },
+  ];
+
   return (
     <section className="py-20 md:py-28">
       <div className="mx-auto max-w-7xl px-6 md:px-8">
@@ -30,18 +35,18 @@ export function FeaturedAgents() {
         <div className="flex items-center justify-between mb-10">
           <div>
             <div className="flex items-center gap-3 mb-2">
-              <h2 className="text-3xl sm:text-4xl font-semibold tracking-tight">Featured Agents</h2>
+              <h2 className="text-3xl sm:text-4xl font-semibold tracking-tight">{t("featuredAgents.title")}</h2>
               <ExternalLink className="w-5 h-5 text-muted-foreground" />
             </div>
             <p className="text-muted-foreground">
-              250k+ apps using OpenRouter with 4.2M+ users globally
+              {t("featuredAgents.subtitle")}
             </p>
           </div>
           <Link
             href="/apps"
             className="hidden sm:inline-flex items-center text-sm font-medium text-primary hover:underline gap-1.5"
           >
-            View all
+            {t("common.viewAll")}
             <ArrowRight className="w-4 h-4" />
           </Link>
         </div>
@@ -83,7 +88,7 @@ export function FeaturedAgents() {
             href="/apps"
             className="inline-flex items-center text-sm font-medium text-primary hover:underline gap-1.5"
           >
-            View all
+            {t("common.viewAll")}
             <ArrowRight className="w-4 h-4" />
           </Link>
         </div>

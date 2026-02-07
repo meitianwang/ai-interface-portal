@@ -4,6 +4,7 @@ import { useState, useEffect } from "react";
 import { createClient } from "@/lib/supabase/client";
 import { useAuth } from "@/lib/auth-context";
 import { useTheme } from "@/lib/theme-context";
+import { useI18n } from "@/lib/i18n-context";
 import { Loader2, Check, Moon, Sun, Monitor, Bell, Mail, AlertTriangle } from "lucide-react";
 import { cn } from "@/lib/utils";
 
@@ -20,18 +21,24 @@ interface Preferences {
 const languages = [
   { id: "en", name: "English" },
   { id: "zh", name: "中文" },
-  { id: "ja", name: "日本語" },
-  { id: "ko", name: "한국어" },
-  { id: "es", name: "Español" },
-  { id: "fr", name: "Français" },
-  { id: "de", name: "Deutsch" },
 ];
+
+const defaultPreferences: Preferences = {
+  theme: "dark",
+  language: "en",
+  email_notifications: true,
+  marketing_emails: false,
+  usage_alerts: true,
+  low_balance_alert_threshold: 5,
+  data_collection_consent: true,
+};
 
 export default function SettingsPreferencesPage() {
   const { user } = useAuth();
   const { theme: currentTheme, setTheme } = useTheme();
+  const { t, locale, setLocale } = useI18n();
   const supabase = createClient();
-  const [preferences, setPreferences] = useState<Preferences | null>(null);
+  const [preferences, setPreferences] = useState<Preferences>(defaultPreferences);
   const [isLoading, setIsLoading] = useState(true);
   const [isSaving, setIsSaving] = useState(false);
   const [saved, setSaved] = useState(false);
@@ -39,6 +46,8 @@ export default function SettingsPreferencesPage() {
   useEffect(() => {
     if (user) {
       loadPreferences();
+    } else {
+      setIsLoading(false);
     }
   }, [user]);
 
@@ -56,13 +65,13 @@ export default function SettingsPreferencesPage() {
 
       if (data) {
         setPreferences({
-          theme: data.theme,
-          language: data.language,
-          email_notifications: data.email_notifications,
-          marketing_emails: data.marketing_emails,
-          usage_alerts: data.usage_alerts,
-          low_balance_alert_threshold: data.low_balance_alert_threshold,
-          data_collection_consent: data.data_collection_consent,
+          theme: data.theme || defaultPreferences.theme,
+          language: data.language || defaultPreferences.language,
+          email_notifications: data.email_notifications ?? defaultPreferences.email_notifications,
+          marketing_emails: data.marketing_emails ?? defaultPreferences.marketing_emails,
+          usage_alerts: data.usage_alerts ?? defaultPreferences.usage_alerts,
+          low_balance_alert_threshold: data.low_balance_alert_threshold ?? defaultPreferences.low_balance_alert_threshold,
+          data_collection_consent: data.data_collection_consent ?? defaultPreferences.data_collection_consent,
         });
       }
     } catch (error) {
@@ -78,7 +87,7 @@ export default function SettingsPreferencesPage() {
     setIsSaving(true);
     try {
       const newPrefs = { ...preferences, ...updates };
-      setPreferences(newPrefs as Preferences);
+      setPreferences(newPrefs);
 
       const { error } = await supabase
         .from("user_preferences")
@@ -96,18 +105,19 @@ export default function SettingsPreferencesPage() {
     }
   };
 
+  const handleLanguageChange = (newLang: string) => {
+    if (newLang === "en" || newLang === "zh") {
+      setLocale(newLang);
+      setPreferences(prev => ({ ...prev, language: newLang }));
+      setSaved(true);
+      setTimeout(() => setSaved(false), 2000);
+    }
+  };
+
   if (isLoading) {
     return (
       <div className="flex items-center justify-center py-20">
         <Loader2 className="w-8 h-8 animate-spin text-primary" />
-      </div>
-    );
-  }
-
-  if (!preferences) {
-    return (
-      <div className="text-center py-20">
-        <p className="text-muted-foreground">Failed to load preferences</p>
       </div>
     );
   }
@@ -117,15 +127,15 @@ export default function SettingsPreferencesPage() {
       {/* Header */}
       <div className="flex items-center justify-between mb-8">
         <div>
-          <h1 className="text-2xl font-bold mb-1">Preferences</h1>
+          <h1 className="text-2xl font-bold mb-1">{t("preferences.title")}</h1>
           <p className="text-muted-foreground">
-            Customize your OpenRouter experience
+            {t("preferences.subtitle")}
           </p>
         </div>
         {saved && (
           <div className="flex items-center gap-2 text-primary text-sm">
             <Check className="w-4 h-4" />
-            Saved
+            {t("common.saved")}
           </div>
         )}
       </div>
@@ -133,15 +143,15 @@ export default function SettingsPreferencesPage() {
       <div className="space-y-8">
         {/* Theme */}
         <div className="rounded-xl border border-border bg-card p-6">
-          <h2 className="font-semibold mb-1">Theme</h2>
+          <h2 className="font-semibold mb-1">{t("preferences.theme.title")}</h2>
           <p className="text-sm text-muted-foreground mb-4">
-            Choose your preferred color scheme
+            {t("preferences.theme.subtitle")}
           </p>
           <div className="flex gap-3">
             {[
-              { id: "light", name: "Light", icon: Sun },
-              { id: "dark", name: "Dark", icon: Moon },
-              { id: "system", name: "System", icon: Monitor },
+              { id: "light", nameKey: "preferences.theme.light", icon: Sun },
+              { id: "dark", nameKey: "preferences.theme.dark", icon: Moon },
+              { id: "system", nameKey: "preferences.theme.system", icon: Monitor },
             ].map((themeOption) => {
               const Icon = themeOption.icon;
               return (
@@ -149,7 +159,7 @@ export default function SettingsPreferencesPage() {
                   key={themeOption.id}
                   onClick={() => {
                     setTheme(themeOption.id as "light" | "dark" | "system");
-                    setPreferences(prev => prev ? { ...prev, theme: themeOption.id as Preferences["theme"] } : prev);
+                    setPreferences(prev => ({ ...prev, theme: themeOption.id as Preferences["theme"] }));
                     setSaved(true);
                     setTimeout(() => setSaved(false), 2000);
                   }}
@@ -161,7 +171,7 @@ export default function SettingsPreferencesPage() {
                   )}
                 >
                   <Icon className="w-4 h-4" />
-                  {themeOption.name}
+                  {t(themeOption.nameKey)}
                 </button>
               );
             })}
@@ -170,13 +180,13 @@ export default function SettingsPreferencesPage() {
 
         {/* Language */}
         <div className="rounded-xl border border-border bg-card p-6">
-          <h2 className="font-semibold mb-1">Language</h2>
+          <h2 className="font-semibold mb-1">{t("preferences.language.title")}</h2>
           <p className="text-sm text-muted-foreground mb-4">
-            Select your preferred language for the interface
+            {t("preferences.language.subtitle")}
           </p>
           <select
-            value={preferences.language}
-            onChange={(e) => savePreferences({ language: e.target.value })}
+            value={locale}
+            onChange={(e) => handleLanguageChange(e.target.value)}
             className="w-full max-w-md h-10 px-4 bg-secondary rounded-lg text-sm border border-transparent focus:outline-none focus:ring-2 focus:ring-primary/50"
           >
             {languages.map((lang) => (
@@ -192,9 +202,9 @@ export default function SettingsPreferencesPage() {
           <div className="flex items-center gap-3 mb-4">
             <Bell className="w-5 h-5 text-muted-foreground" />
             <div>
-              <h2 className="font-semibold">Notifications</h2>
+              <h2 className="font-semibold">{t("preferences.notifications.title")}</h2>
               <p className="text-sm text-muted-foreground">
-                Manage your email notification preferences
+                {t("preferences.notifications.subtitle")}
               </p>
             </div>
           </div>
@@ -204,9 +214,9 @@ export default function SettingsPreferencesPage() {
               <div className="flex items-center gap-3">
                 <Mail className="w-5 h-5 text-muted-foreground" />
                 <div>
-                  <p className="font-medium">Email notifications</p>
+                  <p className="font-medium">{t("preferences.notifications.email.title")}</p>
                   <p className="text-sm text-muted-foreground">
-                    Receive important updates about your account
+                    {t("preferences.notifications.email.subtitle")}
                   </p>
                 </div>
               </div>
@@ -228,9 +238,9 @@ export default function SettingsPreferencesPage() {
 
             <label className="flex items-center justify-between p-4 rounded-lg bg-secondary/50 cursor-pointer">
               <div>
-                <p className="font-medium">Marketing emails</p>
+                <p className="font-medium">{t("preferences.notifications.marketing.title")}</p>
                 <p className="text-sm text-muted-foreground">
-                  Receive news, announcements, and product updates
+                  {t("preferences.notifications.marketing.subtitle")}
                 </p>
               </div>
               <button
@@ -253,9 +263,9 @@ export default function SettingsPreferencesPage() {
               <div className="flex items-center gap-3">
                 <AlertTriangle className="w-5 h-5 text-muted-foreground" />
                 <div>
-                  <p className="font-medium">Usage alerts</p>
+                  <p className="font-medium">{t("preferences.notifications.usage.title")}</p>
                   <p className="text-sm text-muted-foreground">
-                    Get notified when your balance is low
+                    {t("preferences.notifications.usage.subtitle")}
                   </p>
                 </div>
               </div>
@@ -278,7 +288,7 @@ export default function SettingsPreferencesPage() {
             {preferences.usage_alerts && (
               <div className="pl-4 border-l-2 border-border ml-2">
                 <label className="block text-sm font-medium mb-2">
-                  Alert threshold
+                  {t("preferences.notifications.threshold.title")}
                 </label>
                 <div className="flex items-center gap-2">
                   <span className="text-muted-foreground">$</span>
@@ -296,7 +306,7 @@ export default function SettingsPreferencesPage() {
                   />
                 </div>
                 <p className="text-xs text-muted-foreground mt-1">
-                  You&apos;ll be notified when your balance falls below this amount
+                  {t("preferences.notifications.threshold.subtitle")}
                 </p>
               </div>
             )}

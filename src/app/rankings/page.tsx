@@ -5,6 +5,7 @@ import Link from "next/link";
 import { Header } from "@/components/Header";
 import { Footer } from "@/components/Footer";
 import { models } from "@/lib/models-data";
+import { useI18n } from "@/lib/i18n-context";
 import { TrendingUp, TrendingDown, BarChart3, Users, Layers } from "lucide-react";
 import { cn } from "@/lib/utils";
 
@@ -27,6 +28,7 @@ const mockProviders = [
 ];
 
 export default function RankingsPage() {
+  const { t } = useI18n();
   const [activeTab, setActiveTab] = useState<TabType>("models");
 
   const topModels = models.slice(0, 10).map((model, index) => ({
@@ -44,9 +46,9 @@ export default function RankingsPage() {
         <div className="mx-auto max-w-7xl px-6 md:px-8 py-12">
           {/* Header */}
           <div className="mb-10">
-            <h1 className="text-4xl font-bold mb-3">Rankings</h1>
+            <h1 className="text-4xl font-bold mb-3">{t("rankings.title")}</h1>
             <p className="text-lg text-muted-foreground">
-              Explore token usage across models, providers, and applications
+              {t("rankings.subtitle")}
             </p>
           </div>
 
@@ -57,39 +59,39 @@ export default function RankingsPage() {
                 <div className="w-10 h-10 rounded-xl bg-primary/10 flex items-center justify-center">
                   <Layers className="w-5 h-5 text-primary" />
                 </div>
-                <span className="text-muted-foreground">Total Tokens</span>
+                <span className="text-muted-foreground">{t("rankings.totalTokens")}</span>
               </div>
               <p className="text-3xl font-bold">30T+</p>
-              <p className="text-sm text-emerald-500 mt-1">+15.2% this week</p>
+              <p className="text-sm text-emerald-500 mt-1">+15.2% {t("common.thisWeek")}</p>
             </div>
             <div className="rounded-2xl border border-border bg-card p-6">
               <div className="flex items-center gap-3 mb-4">
                 <div className="w-10 h-10 rounded-xl bg-primary/10 flex items-center justify-center">
                   <BarChart3 className="w-5 h-5 text-primary" />
                 </div>
-                <span className="text-muted-foreground">Active Models</span>
+                <span className="text-muted-foreground">{t("rankings.activeModels")}</span>
               </div>
               <p className="text-3xl font-bold">300+</p>
-              <p className="text-sm text-emerald-500 mt-1">+12 this week</p>
+              <p className="text-sm text-emerald-500 mt-1">+12 {t("common.thisWeek")}</p>
             </div>
             <div className="rounded-2xl border border-border bg-card p-6">
               <div className="flex items-center gap-3 mb-4">
                 <div className="w-10 h-10 rounded-xl bg-primary/10 flex items-center justify-center">
                   <Users className="w-5 h-5 text-primary" />
                 </div>
-                <span className="text-muted-foreground">Global Users</span>
+                <span className="text-muted-foreground">{t("rankings.globalUsers")}</span>
               </div>
               <p className="text-3xl font-bold">5M+</p>
-              <p className="text-sm text-emerald-500 mt-1">+8.7% this week</p>
+              <p className="text-sm text-emerald-500 mt-1">+8.7% {t("common.thisWeek")}</p>
             </div>
           </div>
 
           {/* Tabs */}
           <div className="flex gap-1 p-1 bg-secondary rounded-xl w-fit mb-8">
             {[
-              { id: "models", label: "Models" },
-              { id: "providers", label: "Providers" },
-              { id: "apps", label: "Apps" },
+              { id: "models", label: t("rankings.models") },
+              { id: "providers", label: t("rankings.providers") },
+              { id: "apps", label: t("rankings.apps") },
             ].map((tab) => (
               <button
                 key={tab.id}
@@ -113,19 +115,19 @@ export default function RankingsPage() {
                 <thead>
                   <tr className="border-b border-border bg-secondary/50">
                     <th className="px-6 py-4 text-left text-sm font-medium text-muted-foreground">
-                      Rank
+                      {t("common.rank")}
                     </th>
                     <th className="px-6 py-4 text-left text-sm font-medium text-muted-foreground">
-                      {activeTab === "models" ? "Model" : activeTab === "providers" ? "Provider" : "App"}
+                      {activeTab === "models" ? t("rankings.model") : activeTab === "providers" ? t("rankings.provider") : t("rankings.app")}
                     </th>
                     <th className="px-6 py-4 text-right text-sm font-medium text-muted-foreground">
-                      {activeTab === "apps" ? "Users" : activeTab === "providers" ? "Models" : "Context"}
+                      {activeTab === "apps" ? t("common.users") : activeTab === "providers" ? t("rankings.models") : t("rankings.context")}
                     </th>
                     <th className="px-6 py-4 text-right text-sm font-medium text-muted-foreground">
-                      Weekly Tokens
+                      {t("rankings.weeklyTokens")}
                     </th>
                     <th className="px-6 py-4 text-right text-sm font-medium text-muted-foreground">
-                      Trend
+                      {t("common.trend")}
                     </th>
                   </tr>
                 </thead>

@@ -3,31 +3,43 @@
 import { useState, useRef, useEffect } from "react";
 import Link from "next/link";
 import { useRouter } from "next/navigation";
-import { Search, Menu, X, User, Settings, Key, LogOut, CreditCard } from "lucide-react";
+import { Search, Menu, X, User, Settings, Key, LogOut, CreditCard, Globe } from "lucide-react";
 import { cn } from "@/lib/utils";
 import { useAuth } from "@/lib/auth-context";
-
-const navLinks = [
-  { name: "Models", href: "/models" },
-  { name: "Chat", href: "/chat" },
-  { name: "Rankings", href: "/rankings" },
-  { name: "Enterprise", href: "/enterprise" },
-  { name: "Pricing", href: "/pricing" },
-  { name: "Docs", href: "/docs" },
-];
+import { useI18n, Locale } from "@/lib/i18n-context";
 
 export function Header() {
   const router = useRouter();
   const { user, isLoading, signOut } = useAuth();
+  const { t, locale, setLocale } = useI18n();
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
   const [userMenuOpen, setUserMenuOpen] = useState(false);
+  const [langMenuOpen, setLangMenuOpen] = useState(false);
   const userMenuRef = useRef<HTMLDivElement>(null);
+  const langMenuRef = useRef<HTMLDivElement>(null);
 
-  // Close user menu when clicking outside
+  const navLinks = [
+    { name: t("nav.models"), href: "/models" },
+    { name: t("nav.chat"), href: "/chat" },
+    { name: t("nav.rankings"), href: "/rankings" },
+    { name: t("nav.enterprise"), href: "/enterprise" },
+    { name: t("nav.pricing"), href: "/pricing" },
+    { name: t("nav.docs"), href: "/docs" },
+  ];
+
+  const languages: { code: Locale; name: string }[] = [
+    { code: "en", name: "English" },
+    { code: "zh", name: "中文" },
+  ];
+
+  // Close menus when clicking outside
   useEffect(() => {
     function handleClickOutside(event: MouseEvent) {
       if (userMenuRef.current && !userMenuRef.current.contains(event.target as Node)) {
         setUserMenuOpen(false);
+      }
+      if (langMenuRef.current && !langMenuRef.current.contains(event.target as Node)) {
+        setLangMenuOpen(false);
       }
     }
     document.addEventListener("mousedown", handleClickOutside);
@@ -38,6 +50,11 @@ export function Header() {
     await signOut();
     setUserMenuOpen(false);
     router.push("/");
+  };
+
+  const handleLanguageChange = (lang: Locale) => {
+    setLocale(lang);
+    setLangMenuOpen(false);
   };
 
   const getUserInitials = () => {
@@ -88,7 +105,7 @@ export function Header() {
                 <Search className="absolute left-3 top-1/2 -translate-y-1/2 w-4 h-4 text-muted-foreground" />
                 <input
                   type="text"
-                  placeholder="Search"
+                  placeholder={t("common.search")}
                   className="w-80 h-9 pl-10 pr-8 bg-secondary rounded-lg text-sm placeholder:text-muted-foreground border border-transparent focus:outline-none focus:ring-1 focus:ring-primary/50 focus:border-primary/50 transition-all"
                 />
                 <kbd className="absolute right-3 top-1/2 -translate-y-1/2 text-[10px] text-muted-foreground bg-background px-1.5 py-0.5 rounded border border-border font-mono">
@@ -102,7 +119,7 @@ export function Header() {
           <nav className="hidden lg:flex items-center gap-1">
             {navLinks.map((link) => (
               <Link
-                key={link.name}
+                key={link.href}
                 href={link.href}
                 className="px-3.5 py-2 text-sm text-muted-foreground hover:text-foreground transition-colors rounded-lg hover:bg-secondary"
               >
@@ -111,11 +128,40 @@ export function Header() {
             ))}
           </nav>
 
-          {/* Right: Auth */}
+          {/* Right: Language + Auth */}
           <div className="flex items-center gap-3">
             <button className="lg:hidden p-2 text-muted-foreground hover:text-foreground rounded-lg hover:bg-secondary transition-colors">
               <Search className="w-5 h-5" />
             </button>
+
+            {/* Language Switcher */}
+            <div className="relative hidden sm:block" ref={langMenuRef}>
+              <button
+                onClick={() => setLangMenuOpen(!langMenuOpen)}
+                className="flex items-center gap-1.5 p-2 text-muted-foreground hover:text-foreground rounded-lg hover:bg-secondary transition-colors"
+                title={t("preferences.language.title")}
+              >
+                <Globe className="w-4 h-4" />
+                <span className="text-sm">{locale === "en" ? "EN" : "中"}</span>
+              </button>
+
+              {langMenuOpen && (
+                <div className="absolute right-0 top-full mt-2 w-32 bg-card border border-border rounded-lg shadow-lg py-1 z-50">
+                  {languages.map((lang) => (
+                    <button
+                      key={lang.code}
+                      onClick={() => handleLanguageChange(lang.code)}
+                      className={cn(
+                        "w-full px-4 py-2 text-sm text-left hover:bg-secondary transition-colors",
+                        locale === lang.code && "text-primary"
+                      )}
+                    >
+                      {lang.name}
+                    </button>
+                  ))}
+                </div>
+              )}
+            </div>
 
             {isLoading ? (
               <div className="w-9 h-9 rounded-full bg-secondary animate-pulse" />
@@ -157,7 +203,7 @@ export function Header() {
                         className="flex items-center gap-3 px-4 py-2.5 text-sm hover:bg-secondary transition-colors"
                       >
                         <Key className="w-4 h-4 text-muted-foreground" />
-                        API Keys
+                        {t("settings.apiKeys")}
                       </Link>
                       <Link
                         href="/settings/credits"
@@ -165,7 +211,7 @@ export function Header() {
                         className="flex items-center gap-3 px-4 py-2.5 text-sm hover:bg-secondary transition-colors"
                       >
                         <CreditCard className="w-4 h-4 text-muted-foreground" />
-                        Credits
+                        {t("settings.credits")}
                       </Link>
                       <Link
                         href="/settings/profile"
@@ -173,7 +219,7 @@ export function Header() {
                         className="flex items-center gap-3 px-4 py-2.5 text-sm hover:bg-secondary transition-colors"
                       >
                         <User className="w-4 h-4 text-muted-foreground" />
-                        Profile
+                        {t("settings.profile")}
                       </Link>
                       <Link
                         href="/settings/preferences"
@@ -181,7 +227,7 @@ export function Header() {
                         className="flex items-center gap-3 px-4 py-2.5 text-sm hover:bg-secondary transition-colors"
                       >
                         <Settings className="w-4 h-4 text-muted-foreground" />
-                        Preferences
+                        {t("settings.preferences")}
                       </Link>
                     </div>
 
@@ -191,7 +237,7 @@ export function Header() {
                         className="flex items-center gap-3 px-4 py-2.5 text-sm hover:bg-secondary transition-colors w-full text-left text-red-500"
                       >
                         <LogOut className="w-4 h-4" />
-                        Sign out
+                        {t("auth.signOut")}
                       </button>
                     </div>
                   </div>
@@ -202,7 +248,7 @@ export function Header() {
                 href="/login"
                 className="hidden sm:inline-flex h-9 px-4 items-center justify-center rounded-lg bg-primary text-primary-foreground text-sm font-medium hover:bg-primary/90 transition-colors shadow-sm"
               >
-                Sign In
+                {t("auth.signIn")}
               </Link>
             )}
 
@@ -225,7 +271,7 @@ export function Header() {
           <nav className="flex flex-col gap-1 pt-2">
             {navLinks.map((link) => (
               <Link
-                key={link.name}
+                key={link.href}
                 href={link.href}
                 onClick={() => setMobileMenuOpen(false)}
                 className="px-4 py-2.5 text-sm text-muted-foreground hover:text-foreground transition-colors rounded-lg hover:bg-secondary"
@@ -233,6 +279,29 @@ export function Header() {
                 {link.name}
               </Link>
             ))}
+
+            {/* Mobile Language Switcher */}
+            <div className="border-t border-border my-2" />
+            <div className="px-4 py-2">
+              <p className="text-xs text-muted-foreground mb-2">{t("preferences.language.title")}</p>
+              <div className="flex gap-2">
+                {languages.map((lang) => (
+                  <button
+                    key={lang.code}
+                    onClick={() => handleLanguageChange(lang.code)}
+                    className={cn(
+                      "px-3 py-1.5 text-sm rounded-lg transition-colors",
+                      locale === lang.code
+                        ? "bg-primary text-primary-foreground"
+                        : "bg-secondary hover:bg-secondary/80"
+                    )}
+                  >
+                    {lang.name}
+                  </button>
+                ))}
+              </div>
+            </div>
+
             {user ? (
               <>
                 <div className="border-t border-border my-2" />
@@ -241,20 +310,20 @@ export function Header() {
                   onClick={() => setMobileMenuOpen(false)}
                   className="px-4 py-2.5 text-sm text-muted-foreground hover:text-foreground transition-colors rounded-lg hover:bg-secondary"
                 >
-                  API Keys
+                  {t("settings.apiKeys")}
                 </Link>
                 <Link
                   href="/settings/preferences"
                   onClick={() => setMobileMenuOpen(false)}
                   className="px-4 py-2.5 text-sm text-muted-foreground hover:text-foreground transition-colors rounded-lg hover:bg-secondary"
                 >
-                  Settings
+                  {t("settings.preferences")}
                 </Link>
                 <button
                   onClick={handleSignOut}
                   className="px-4 py-2.5 text-sm text-red-500 hover:text-red-400 transition-colors rounded-lg hover:bg-secondary text-left"
                 >
-                  Sign out
+                  {t("auth.signOut")}
                 </button>
               </>
             ) : (
@@ -263,7 +332,7 @@ export function Header() {
                 onClick={() => setMobileMenuOpen(false)}
                 className="sm:hidden mt-3 h-10 px-4 flex items-center justify-center rounded-lg bg-primary text-primary-foreground text-sm font-medium hover:bg-primary/90 transition-colors"
               >
-                Sign In
+                {t("auth.signIn")}
               </Link>
             )}
           </nav>

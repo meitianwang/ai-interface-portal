@@ -1,0 +1,626 @@
+{
+  "common": {
+    "search": "Search",
+    "save": "Save",
+    "cancel": "Cancel",
+    "delete": "Delete",
+    "edit": "Edit",
+    "create": "Create",
+    "loading": "Loading...",
+    "saved": "Saved",
+    "saving": "Saving...",
+    "viewAll": "View all",
+    "learnMore": "Learn more",
+    "viewDocs": "View docs",
+    "browseAll": "Browse all",
+    "clearFilters": "Clear filters",
+    "clearAllFilters": "Clear all filters",
+    "filters": "Filters",
+    "showing": "Showing",
+    "noResults": "No results found",
+    "new": "New",
+    "free": "Free",
+    "or": "or",
+    "done": "Done",
+    "creating": "Creating...",
+    "sending": "Sending...",
+    "subscribe": "Subscribe",
+    "enterEmail": "Enter your email",
+    "getStarted": "Get Started",
+    "contactSales": "Contact Sales",
+    "readTheDocs": "Read the Docs",
+    "characters": "characters",
+    "all": "All",
+    "featured": "Featured",
+    "recent": "Recent",
+    "settings": "Settings",
+    "purchase": "Purchase",
+    "rank": "Rank",
+    "users": "Users",
+    "trend": "Trend",
+    "thisWeek": "this week"
+  },
+  "metadata": {
+    "title": "OpenRouter | The Unified Interface For LLMs",
+    "description": "Better prices, better uptime, no subscriptions. Access 300+ AI models through one API."
+  },
+  "nav": {
+    "models": "Models",
+    "chat": "Chat",
+    "rankings": "Rankings",
+    "enterprise": "Enterprise",
+    "pricing": "Pricing",
+    "docs": "Docs"
+  },
+  "settings": {
+    "title": "Settings",
+    "apiKeys": "API Keys",
+    "credits": "Credits",
+    "usage": "Usage",
+    "profile": "Profile",
+    "preferences": "Preferences",
+    "privacy": "Privacy"
+  },
+  "preferences": {
+    "title": "Preferences",
+    "subtitle": "Customize your OpenRouter experience",
+    "theme": {
+      "title": "Theme",
+      "subtitle": "Choose your preferred color scheme",
+      "light": "Light",
+      "dark": "Dark",
+      "system": "System"
+    },
+    "language": {
+      "title": "Language",
+      "subtitle": "Select your preferred language for the interface"
+    },
+    "notifications": {
+      "title": "Notifications",
+      "subtitle": "Manage your email notification preferences",
+      "email": {
+        "title": "Email notifications",
+        "subtitle": "Receive important updates about your account"
+      },
+      "marketing": {
+        "title": "Marketing emails",
+        "subtitle": "Receive news, announcements, and product updates"
+      },
+      "usage": {
+        "title": "Usage alerts",
+        "subtitle": "Get notified when your balance is low"
+      },
+      "threshold": {
+        "title": "Alert threshold",
+        "subtitle": "You'll be notified when your balance falls below this amount"
+      }
+    }
+  },
+  "privacy": {
+    "title": "Privacy",
+    "subtitle": "Manage your data and privacy settings",
+    "dataCollection": {
+      "title": "Data Collection",
+      "subtitle": "Allow us to collect anonymous usage data to improve our services",
+      "weCollect": "We collect:",
+      "stats": "Aggregated usage statistics",
+      "metrics": "Performance metrics",
+      "errors": "Error reports",
+      "never": "We never collect your prompts or API responses."
+    },
+    "download": {
+      "title": "Download Your Data",
+      "subtitle": "Get a copy of all your data stored on OpenRouter",
+      "button": "Request Data Export"
+    },
+    "chatHistory": {
+      "title": "Chat History",
+      "subtitle": "Your chat history is stored locally in your browser and is not sent to our servers",
+      "button": "Clear Local Chat History"
+    },
+    "deleteAccount": {
+      "title": "Delete Account",
+      "subtitle": "Permanently delete your account and all associated data. This action cannot be undone.",
+      "button": "Delete My Account",
+      "confirmTitle": "Delete Account",
+      "confirmText": "This will permanently delete your account, including:",
+      "confirmProfile": "Your profile and preferences",
+      "confirmKeys": "All API keys",
+      "confirmHistory": "Usage history",
+      "confirmCredits": "Any remaining credits (non-refundable)",
+      "typeConfirm": "Type",
+      "toConfirm": "to confirm",
+      "confirmPhrase": "delete my account"
+    }
+  },
+  "profile": {
+    "title": "Profile",
+    "subtitle": "Manage your public profile information",
+    "displayName": "Display Name",
+    "displayNameHint": "This will be shown publicly if you share apps",
+    "fullName": "Full Name",
+    "email": "Email",
+    "emailCannotChange": "Email cannot be changed",
+    "bio": "Bio",
+    "bioPlaceholder": "Tell us a bit about yourself...",
+    "website": "Website",
+    "company": "Company",
+    "location": "Location",
+    "avatar": "Avatar",
+    "avatarHint": "Click the camera icon to upload a new avatar.",
+    "avatarSize": "Recommended size: 256x256 pixels",
+    "basicInfo": "Basic Information",
+    "additionalInfo": "Additional Information",
+    "saveChanges": "Save Changes",
+    "characters": "characters"
+  },
+  "credits": {
+    "title": "Credits",
+    "subtitle": "Manage your account balance and purchase credits",
+    "balance": "Current Balance",
+    "currentBalance": "Current Balance",
+    "lifetimeUsage": "Lifetime usage",
+    "addCredits": "Add Credits",
+    "buyCredits": "Buy Credits",
+    "purchaseCredits": "Purchase credits to use with the API",
+    "orEnterCustom": "or enter custom amount",
+    "recentTransactions": "Recent Transactions",
+    "noTransactions": "No transactions yet",
+    "paymentMethods": "Payment Methods",
+    "addPaymentMethod": "Add payment method",
+    "noPaymentMethods": "No payment methods added yet",
+    "addCardToEnable": "Add a card to enable auto-reload",
+    "addCardHint": "Add a card to enable auto-reload",
+    "autoReload": "Auto-reload",
+    "autoReloadDesc": "Automatically add credits when your balance is low",
+    "autoReloadHint": "Add a payment method to enable auto-reload",
+    "addPaymentFirst": "Add a payment method to enable auto-reload",
+    "availableCredits": "Available Credits",
+    "credits": "Credits",
+    "purchase": "Purchase"
+  },
+  "usage": {
+    "title": "Usage",
+    "subtitle": "Track your API usage and costs",
+    "export": "Export",
+    "last7days": "Last 7 days",
+    "last30days": "Last 30 days",
+    "last90days": "Last 90 days",
+    "totalSpent": "Total Spent",
+    "inputTokens": "Input Tokens",
+    "outputTokens": "Output Tokens",
+    "recentActivity": "Recent Activity",
+    "noUsage": "No usage data for this period",
+    "noData": "No usage data for this period",
+    "startUsing": "Start using the API to see your usage here",
+    "model": "Model",
+    "input": "Input",
+    "output": "Output",
+    "cost": "Cost",
+    "date": "Date"
+  },
+  "keys": {
+    "title": "API Keys",
+    "subtitle": "Manage your API keys for accessing OpenRouter",
+    "createKey": "Create Key",
+    "createApiKey": "Create API Key",
+    "newKeyName": "New Key Name",
+    "keyName": "Key name",
+    "keyNamePlaceholder": "e.g., Production, Development",
+    "keyCreated": "API Key Created",
+    "copyWarning": "Make sure to copy your API key now. You won't be able to see it again!",
+    "yourApiKey": "Your API Key",
+    "copy": "Copy",
+    "close": "Close",
+    "noKeys": "No API keys yet",
+    "createFirst": "Create your first API key to start using OpenRouter",
+    "created": "Created",
+    "lastUsed": "Last used",
+    "never": "Never",
+    "revoke": "Revoke",
+    "revokeConfirm": "Are you sure you want to revoke this API key? This action cannot be undone.",
+    "keepSecure": "Keep your keys secure",
+    "securityTip": "Never share your API keys or commit them to version control. If you believe a key has been compromised, revoke it immediately."
+  },
+  "auth": {
+    "signIn": "Sign In",
+    "signOut": "Sign Out",
+    "signUp": "Sign Up",
+    "continueWithGoogle": "Continue with Google",
+    "continueWithGitHub": "Continue with GitHub",
+    "continueWithMetaMask": "Continue with MetaMask",
+    "continueWithEmail": "Continue with Email",
+    "orContinueWith": "Or continue with",
+    "email": "Email",
+    "password": "Password",
+    "forgotPassword": "Forgot password?",
+    "noAccount": "Don't have an account?",
+    "hasAccount": "Already have an account?",
+    "getApiKey": "Get your API key",
+    "signInToManage": "Sign in to create and manage your API keys",
+    "checkEmail": "Check your email",
+    "sentLoginLink": "We sent a login link to",
+    "clickLinkToSignIn": "Click the link in the email to sign in to your account.",
+    "useDifferentEmail": "Use a different email",
+    "termsAgree": "By continuing, you agree to our",
+    "termsOfService": "Terms of Service",
+    "and": "and",
+    "privacyPolicy": "Privacy Policy"
+  },
+  "home": {
+    "heroTitle1": "The Unified Interface",
+    "heroTitle2": "For LLMs",
+    "heroSubtitle": "Better",
+    "prices": "prices",
+    "betterUptime": "better",
+    "uptime": "uptime",
+    "noSubs": "no subscriptions.",
+    "getApiKey": "Get API Key",
+    "exploreModels": "Explore Models",
+    "trustedBy": "Trusted by developers worldwide"
+  },
+  "stats": {
+    "trustedByMillions": "Trusted by Millions",
+    "monthlyTokens": "Monthly Tokens",
+    "globalUsers": "Global Users",
+    "activeProviders": "Active Providers",
+    "models": "Models"
+  },
+  "features": {
+    "title": "OpenRouter Features",
+    "oneApi": {
+      "title": "One API for Any Model",
+      "description": "Access all major models through a single, unified interface",
+      "yourApp": "Your App"
+    },
+    "availability": {
+      "title": "Higher Availability",
+      "description": "Reliable AI models via our distributed infrastructure"
+    },
+    "pricing": {
+      "title": "Price and Performance",
+      "description": "Keep costs in check without sacrificing speed"
+    },
+    "privacy": {
+      "title": "Custom Data Policies",
+      "description": "Protect your organization with fine grained data policies",
+      "noTraining": "No training",
+      "noLogging": "No logging",
+      "gdprCompliant": "GDPR compliant"
+    }
+  },
+  "featuredAgents": {
+    "title": "Featured Agents",
+    "subtitle": "250k+ apps using OpenRouter with 4.2M+ users globally",
+    "agents": {
+      "replit": "The easiest way to go from idea to app",
+      "blackboxai": "AI agent for builders",
+      "kiloCode": "Everything you need for agentic development"
+    }
+  },
+  "howItWorks": {
+    "title": "How It Works",
+    "step1": {
+      "title": "Signup",
+      "description": "Create an account to get started"
+    },
+    "step2": {
+      "title": "Buy credits",
+      "description": "Credits can be used with any model or provider"
+    },
+    "step3": {
+      "title": "Get your API key",
+      "description": "Create an API key and start making requests",
+      "apiKey": "API Key",
+      "openaiCompatible": "Fully OpenAI compatible"
+    }
+  },
+  "featuredModels": {
+    "title": "Featured Models",
+    "subtitle": "300+ active models on 60+ providers",
+    "tokens": "Tokens",
+    "weeklyTrend": "Weekly Trend"
+  },
+  "cta": {
+    "exploreModels": {
+      "title": "Explore Models",
+      "description": "Discover AI models across our collection",
+      "button": "View models"
+    },
+    "rankings": {
+      "title": "Model & App Rankings",
+      "description": "Explore token usage across models, labs, and public applications",
+      "button": "View rankings"
+    },
+    "announcements": {
+      "title": "Recent Announcements"
+    }
+  },
+  "models": {
+    "title": "Models",
+    "subtitle": "Browse and compare AI models",
+    "browseModels": "Browse {count}+ models from {providers}+ providers",
+    "searchPlaceholder": "Search models...",
+    "allModels": "All Models",
+    "sortBy": "Sort by",
+    "newest": "Newest",
+    "popular": "Most Popular",
+    "priceLowHigh": "Price: Low to High",
+    "priceHighLow": "Price: High to Low",
+    "contextHighLow": "Context: High to Low",
+    "contextLength": "Context",
+    "inputPrice": "Input",
+    "outputPrice": "Output",
+    "perMillion": "per 1M tokens",
+    "categories": "Categories",
+    "providers": "Providers",
+    "noModelsFound": "No models found"
+  },
+  "chat": {
+    "title": "Chat",
+    "newChat": "New Chat",
+    "selectModel": "Select a model",
+    "typeMessage": "Type a message...",
+    "send": "Send",
+    "stop": "Stop",
+    "regenerate": "Regenerate",
+    "recent": "Recent",
+    "newConversation": "New conversation",
+    "startConversation": "Start a conversation",
+    "sendMessageToStart": "Send a message to start chatting with",
+    "pressEnterToSend": "Press Enter to send, Shift+Enter for new line",
+    "clearChat": "Clear chat"
+  },
+  "rankings": {
+    "title": "Rankings",
+    "subtitle": "Explore token usage across models, providers, and applications",
+    "totalTokens": "Total Tokens",
+    "activeModels": "Active Models",
+    "globalUsers": "Global Users",
+    "models": "Models",
+    "providers": "Providers",
+    "apps": "Apps",
+    "model": "Model",
+    "provider": "Provider",
+    "app": "App",
+    "weeklyTokens": "Weekly Tokens",
+    "context": "Context"
+  },
+  "pricing": {
+    "title": "Simple, transparent pricing",
+    "subtitle": "Pay only for what you use. No subscriptions, no hidden fees.",
+    "free": {
+      "name": "Free",
+      "description": "Get started with free models",
+      "features": {
+        "freeModels": "Access to free models",
+        "requests": "1,000 requests/day",
+        "support": "Community support",
+        "analytics": "Basic analytics"
+      }
+    },
+    "payAsYouGo": {
+      "name": "Pay as you go",
+      "description": "Pay only for what you use",
+      "features": {
+        "allModels": "Access to all 300+ models",
+        "noMinimum": "No minimum spend",
+        "priorityRouting": "Priority routing",
+        "emailSupport": "Email support",
+        "advancedAnalytics": "Advanced analytics"
+      }
+    },
+    "enterprise": {
+      "name": "Enterprise",
+      "description": "Custom solutions for your organization",
+      "features": {
+        "everything": "Everything in Pay as you go",
+        "volumeDiscounts": "Volume discounts",
+        "sla": "99.9% SLA guarantee",
+        "dedicatedSupport": "Dedicated support",
+        "customIntegrations": "Custom integrations",
+        "sso": "SSO & SAML"
+      }
+    },
+    "whyChoose": "Why choose OpenRouter?",
+    "oneApi": "One API",
+    "oneApiDesc": "Access all major AI models through a single, unified API",
+    "providers": "60+ Providers",
+    "providersDesc": "Choose from the widest selection of AI providers",
+    "usersCount": "5M+ Users",
+    "usersDesc": "Join millions of developers building with OpenRouter",
+    "dataPrivacy": "Data Privacy",
+    "dataPrivacyDesc": "Your data is never used for training without consent",
+    "faq": "Frequently asked questions",
+    "readyToStart": "Ready to get started?",
+    "readyDesc": "Start building with OpenRouter today. No credit card required.",
+    "faqItems": {
+      "q1": "How does pricing work?",
+      "a1": "You pay per token used. Each model has its own pricing, which you can see on the models page. There are no subscriptions or hidden fees.",
+      "q2": "Is there a free tier?",
+      "a2": "Yes! We offer access to several free models with reasonable rate limits. Perfect for getting started and testing.",
+      "q3": "How do I add credits?",
+      "a3": "You can add credits at any time from your dashboard using a credit card. We also support crypto payments for larger amounts.",
+      "q4": "What's included in Enterprise?",
+      "a4": "Enterprise includes volume discounts, SLA guarantees, dedicated support, custom integrations, and SSO/SAML authentication."
+    }
+  },
+  "docs": {
+    "title": "Documentation",
+    "subtitle": "Everything you need to integrate OpenRouter into your applications",
+    "searchPlaceholder": "Search documentation...",
+    "popularGuides": "Popular Guides",
+    "guides": {
+      "quickstart": {
+        "title": "Quick Start Guide",
+        "description": "Get up and running with OpenRouter in 5 minutes"
+      },
+      "authentication": {
+        "title": "Authentication",
+        "description": "Learn how to authenticate your API requests"
+      },
+      "modelSelection": {
+        "title": "Model Selection",
+        "description": "Choose the right model for your use case"
+      },
+      "streaming": {
+        "title": "Streaming Responses",
+        "description": "Implement real-time streaming in your app"
+      }
+    },
+    "sections": {
+      "gettingStarted": "Getting Started",
+      "apiReference": "API Reference",
+      "models": "Models",
+      "security": "Security",
+      "infrastructure": "Infrastructure",
+      "sdks": "SDKs"
+    },
+    "links": {
+      "introduction": "Introduction",
+      "quickstart": "Quick Start",
+      "authentication": "Authentication",
+      "errors": "Error Handling",
+      "chatCompletions": "Chat Completions",
+      "embeddings": "Embeddings",
+      "imageGeneration": "Image Generation",
+      "functionCalling": "Function Calling",
+      "modelOverview": "Model Overview",
+      "modelComparison": "Model Comparison",
+      "providerRouting": "Provider Routing",
+      "pricing": "Pricing",
+      "apiKeys": "API Keys",
+      "rateLimits": "Rate Limits",
+      "dataPrivacy": "Data Privacy",
+      "compliance": "Compliance",
+      "uptime": "Uptime & Reliability",
+      "loadBalancing": "Load Balancing",
+      "caching": "Response Caching",
+      "regions": "Regions",
+      "python": "Python SDK",
+      "javascript": "JavaScript SDK",
+      "go": "Go SDK",
+      "community": "Community SDKs"
+    },
+    "startBuilding": "Start building in minutes",
+    "openaiCompatible": "OpenRouter is fully compatible with the OpenAI SDK. Just change the base URL and you're ready to go.",
+    "additionalResources": "Additional Resources",
+    "github": "GitHub",
+    "githubDesc": "View source code and contribute",
+    "discord": "Discord",
+    "discordDesc": "Join our community",
+    "status": "Status",
+    "statusDesc": "Check system status"
+  },
+  "enterprise": {
+    "title": "Enterprise Solutions",
+    "subtitle": "AI infrastructure for the enterprise",
+    "description": "Deploy AI at scale with enterprise-grade security, compliance, and support",
+    "contactSales": "Contact Sales",
+    "viewDocumentation": "View Documentation",
+    "trustedBy": "Trusted by leading companies worldwide",
+    "features": {
+      "title": "Enterprise-grade features",
+      "subtitle": "Everything you need to deploy AI safely and securely at scale",
+      "security": {
+        "title": "Enterprise Security",
+        "description": "SOC 2 Type II certified with end-to-end encryption"
+      },
+      "compliance": {
+        "title": "Compliance Ready",
+        "description": "GDPR, HIPAA, and SOC 2 compliant infrastructure"
+      },
+      "sla": {
+        "title": "99.9% SLA",
+        "description": "Enterprise-grade reliability with guaranteed uptime"
+      },
+      "support": {
+        "title": "Dedicated Support",
+        "description": "24/7 priority support with dedicated account manager"
+      },
+      "sso": {
+        "title": "SSO Integration",
+        "description": "SAML 2.0 and OIDC support for seamless authentication"
+      },
+      "custom": {
+        "title": "Custom Solutions",
+        "description": "Tailored integrations and deployment options"
+      }
+    },
+    "whyChoose": "Why enterprises choose OpenRouter",
+    "benefits": {
+      "cost": "Reduce AI costs by up to 40% with intelligent routing",
+      "provider": "No vendor lock-in - switch providers anytime",
+      "latency": "Lower latency with global edge infrastructure",
+      "privacy": "Complete data privacy - no training on your data",
+      "compliance": "Meet compliance requirements with audit logs",
+      "scale": "Scale from prototype to production seamlessly"
+    },
+    "contact": {
+      "title": "Get in touch",
+      "workEmail": "Work email",
+      "companyName": "Company name",
+      "message": "Message",
+      "messagePlaceholder": "Tell us about your needs...",
+      "submit": "Submit",
+      "emailPlaceholder": "you@company.com",
+      "companyPlaceholder": "Acme Inc."
+    }
+  },
+  "apps": {
+    "title": "Apps",
+    "subtitle": "Discover 250k+ apps built with OpenRouter",
+    "searchPlaceholder": "Search apps...",
+    "categories": {
+      "all": "All",
+      "development": "Development",
+      "chat": "Chat",
+      "writing": "Writing",
+      "research": "Research",
+      "localAi": "Local AI"
+    },
+    "stats": {
+      "totalApps": "Total Apps",
+      "users": "Users",
+      "tokensPerMonth": "Tokens/Month",
+      "modelsUsed": "Models Used"
+    },
+    "featured": "Featured Apps",
+    "buildWith": {
+      "title": "Build with OpenRouter",
+      "description": "Join thousands of developers building amazing AI-powered applications with access to 300+ models."
+    }
+  },
+  "announcements": {
+    "title": "Announcements",
+    "subtitle": "Stay up to date with the latest news and updates from OpenRouter",
+    "categories": {
+      "all": "All",
+      "newModel": "New Model",
+      "feature": "Feature",
+      "report": "Report",
+      "enterprise": "Enterprise"
+    },
+    "allUpdates": "All Updates",
+    "stayInLoop": {
+      "title": "Stay in the loop",
+      "description": "Subscribe to our newsletter to get the latest updates delivered to your inbox"
+    }
+  },
+  "footer": {
+    "product": "Product",
+    "company": "Company",
+    "developer": "Developer",
+    "connect": "Connect",
+    "about": "About",
+    "announcements": "Announcements",
+    "careers": "Careers",
+    "partners": "Partners",
+    "support": "Support",
+    "documentation": "Documentation",
+    "apiReference": "API Reference",
+    "sdk": "SDK",
+    "status": "Status",
+    "termsOfService": "Terms of Service"
+  }
+}

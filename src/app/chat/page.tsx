@@ -3,6 +3,7 @@
 import { useState } from "react";
 import { Header } from "@/components/Header";
 import { models } from "@/lib/models-data";
+import { useI18n } from "@/lib/i18n-context";
 import {
   Send,
   Settings,
@@ -23,6 +24,7 @@ interface Message {
 }
 
 export default function ChatPage() {
+  const { t } = useI18n();
   const [selectedModel, setSelectedModel] = useState(models[0]);
   const [modelDropdownOpen, setModelDropdownOpen] = useState(false);
   const [input, setInput] = useState("");
@@ -74,16 +76,16 @@ export default function ChatPage() {
           <div className="p-4">
             <button className="w-full flex items-center gap-2 h-10 px-4 bg-primary text-primary-foreground rounded-lg text-sm font-medium hover:bg-primary/90 transition-colors">
               <Plus className="w-4 h-4" />
-              New Chat
+              {t("chat.newChat")}
             </button>
           </div>
 
           <div className="flex-1 overflow-y-auto px-2">
             <div className="p-2">
-              <p className="text-xs text-muted-foreground px-2 mb-2">Recent</p>
+              <p className="text-xs text-muted-foreground px-2 mb-2">{t("chat.recent")}</p>
               <button className="w-full flex items-center gap-2 px-3 py-2 rounded-lg text-sm text-left hover:bg-secondary transition-colors group">
                 <MessageSquare className="w-4 h-4 text-muted-foreground" />
-                <span className="flex-1 truncate">New conversation</span>
+                <span className="flex-1 truncate">{t("chat.newConversation")}</span>
               </button>
             </div>
           </div>
@@ -91,7 +93,7 @@ export default function ChatPage() {
           <div className="p-4 border-t border-border">
             <button className="w-full flex items-center gap-2 px-3 py-2 rounded-lg text-sm text-muted-foreground hover:text-foreground hover:bg-secondary transition-colors">
               <Settings className="w-4 h-4" />
-              Settings
+              {t("common.settings")}
             </button>
           </div>
         </aside>
@@ -175,10 +177,10 @@ export default function ChatPage() {
                     <MessageSquare className="w-8 h-8 text-primary" />
                   </div>
                   <h2 className="text-2xl font-semibold mb-2">
-                    Start a conversation
+                    {t("chat.startConversation")}
                   </h2>
                   <p className="text-muted-foreground max-w-md mx-auto">
-                    Send a message to start chatting with {selectedModel.name}
+                    {t("chat.sendMessageToStart")} {selectedModel.name}
                   </p>
                 </div>
               ) : (
@@ -296,7 +298,7 @@ export default function ChatPage() {
               </div>
               <div className="flex items-center justify-between mt-2">
                 <p className="text-xs text-muted-foreground">
-                  Press Enter to send, Shift+Enter for new line
+                  {t("chat.pressEnterToSend")}
                 </p>
                 {messages.length > 0 && (
                   <button
@@ -304,7 +306,7 @@ export default function ChatPage() {
                     className="flex items-center gap-1 text-xs text-muted-foreground hover:text-foreground transition-colors"
                   >
                     <Trash2 className="w-3 h-3" />
-                    Clear chat
+                    {t("chat.clearChat")}
                   </button>
                 )}
               </div>

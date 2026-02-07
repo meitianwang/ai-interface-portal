@@ -1,5 +1,8 @@
+"use client";
+
 import Link from "next/link";
 import { ArrowRight, Grid3X3, BarChart3, Calendar } from "lucide-react";
+import { useI18n } from "@/lib/i18n-context";
 
 const announcements = [
   {
@@ -23,6 +26,8 @@ const announcements = [
 ];
 
 export function CTASection() {
+  const { t } = useI18n();
+
   return (
     <section className="py-20 md:py-28 bg-secondary/30">
       <div className="mx-auto max-w-7xl px-6 md:px-8">
@@ -39,12 +44,12 @@ export function CTASection() {
                   <Grid3X3 className="w-7 h-7 text-primary" />
                 </div>
                 <div className="flex-1">
-                  <h3 className="font-semibold text-lg mb-1.5">Explore Models</h3>
+                  <h3 className="font-semibold text-lg mb-1.5">{t("cta.exploreModels.title")}</h3>
                   <p className="text-sm text-muted-foreground mb-4 leading-relaxed">
-                    Discover AI models across our collection
+                    {t("cta.exploreModels.description")}
                   </p>
                   <span className="inline-flex items-center text-sm font-medium text-primary gap-1.5 group-hover:gap-2.5 transition-all">
-                    View models
+                    {t("cta.exploreModels.button")}
                     <ArrowRight className="w-4 h-4" />
                   </span>
                 </div>
@@ -61,12 +66,12 @@ export function CTASection() {
                   <BarChart3 className="w-7 h-7 text-primary" />
                 </div>
                 <div className="flex-1">
-                  <h3 className="font-semibold text-lg mb-1.5">Model & App Rankings</h3>
+                  <h3 className="font-semibold text-lg mb-1.5">{t("cta.rankings.title")}</h3>
                   <p className="text-sm text-muted-foreground mb-4 leading-relaxed">
-                    Explore token usage across models, labs, and public applications
+                    {t("cta.rankings.description")}
                   </p>
                   <span className="inline-flex items-center text-sm font-medium text-primary gap-1.5 group-hover:gap-2.5 transition-all">
-                    View rankings
+                    {t("cta.rankings.button")}
                     <ArrowRight className="w-4 h-4" />
                   </span>
                 </div>
@@ -78,12 +83,12 @@ export function CTASection() {
           <div className="lg:col-span-5">
             <div className="rounded-2xl border border-border bg-card p-6 md:p-8">
               <div className="flex items-center justify-between mb-8">
-                <h3 className="font-semibold text-xl">Recent Announcements</h3>
+                <h3 className="font-semibold text-xl">{t("cta.announcements.title")}</h3>
                 <Link
                   href="/announcements"
                   className="inline-flex items-center text-sm font-medium text-primary hover:underline gap-1.5"
                 >
-                  View all
+                  {t("common.viewAll")}
                   <ArrowRight className="w-4 h-4" />
                 </Link>
               </div>

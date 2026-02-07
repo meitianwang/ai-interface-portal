@@ -5,6 +5,7 @@ import Link from "next/link";
 import { Header } from "@/components/Header";
 import { Footer } from "@/components/Footer";
 import { models, categories, providers } from "@/lib/models-data";
+import { useI18n } from "@/lib/i18n-context";
 import {
   Search,
   SlidersHorizontal,
@@ -21,6 +22,7 @@ type SortOption = "popular" | "newest" | "price-low" | "price-high" | "context";
 type ViewMode = "grid" | "list";
 
 export default function ModelsPage() {
+  const { t } = useI18n();
   const [searchQuery, setSearchQuery] = useState("");
   const [selectedCategory, setSelectedCategory] = useState("all");
   const [selectedProviders, setSelectedProviders] = useState<string[]>([]);
@@ -85,15 +87,15 @@ export default function ModelsPage() {
   };
 
   const sortOptions = [
-    { value: "popular", label: "Most Popular" },
-    { value: "newest", label: "Newest" },
-    { value: "price-low", label: "Price: Low to High" },
-    { value: "price-high", label: "Price: High to Low" },
-    { value: "context", label: "Context: High to Low" },
+    { value: "popular", labelKey: "models.popular" },
+    { value: "newest", labelKey: "models.newest" },
+    { value: "price-low", labelKey: "models.priceLowHigh" },
+    { value: "price-high", labelKey: "models.priceHighLow" },
+    { value: "context", labelKey: "models.contextHighLow" },
   ];
 
   const formatPrice = (price: number) => {
-    if (price === 0) return "Free";
+    if (price === 0) return t("common.free");
     if (price < 0.01) return `$${price.toFixed(4)}`;
     if (price < 1) return `$${price.toFixed(2)}`;
     return `$${price.toFixed(2)}`;
@@ -114,12 +116,12 @@ export default function ModelsPage() {
             {/* Sidebar Filters - Desktop */}
             <aside className="hidden lg:block w-64 flex-shrink-0">
               <div className="sticky top-24">
-                <h2 className="font-semibold text-lg mb-4">Filters</h2>
+                <h2 className="font-semibold text-lg mb-4">{t("common.filters")}</h2>
 
                 {/* Categories */}
                 <div className="mb-6">
                   <h3 className="text-sm font-medium text-muted-foreground mb-3">
-                    Categories
+                    {t("models.categories")}
                   </h3>
                   <div className="space-y-1">
                     {categories.map((cat) => (
@@ -143,7 +145,7 @@ export default function ModelsPage() {
                 {/* Providers */}
                 <div>
                   <h3 className="text-sm font-medium text-muted-foreground mb-3">
-                    Providers
+                    {t("models.providers")}
                   </h3>
                   <div className="space-y-1">
                     {providers.map((provider) => (
@@ -180,7 +182,7 @@ export default function ModelsPage() {
                     onClick={() => setSelectedProviders([])}
                     className="mt-4 text-sm text-primary hover:underline"
                   >
-                    Clear filters
+                    {t("common.clearFilters")}
                   </button>
                 )}
               </div>
@@ -190,9 +192,9 @@ export default function ModelsPage() {
             <div className="flex-1 min-w-0">
               {/* Header */}
               <div className="mb-6">
-                <h1 className="text-3xl font-bold mb-2">Models</h1>
+                <h1 className="text-3xl font-bold mb-2">{t("models.title")}</h1>
                 <p className="text-muted-foreground">
-                  Browse {models.length}+ models from {providers.length}+ providers
+                  {t("common.showing")} {models.length}+ {t("models.title").toLowerCase()}
                 </p>
               </div>
 
@@ -203,7 +205,7 @@ export default function ModelsPage() {
                   <Search className="absolute left-3 top-1/2 -translate-y-1/2 w-4 h-4 text-muted-foreground" />
                   <input
                     type="text"
-                    placeholder="Search models..."
+                    placeholder={t("models.searchPlaceholder")}
                     value={searchQuery}
                     onChange={(e) => setSearchQuery(e.target.value)}
                     className="w-full h-10 pl-10 pr-4 bg-secondary rounded-lg text-sm placeholder:text-muted-foreground border border-transparent focus:outline-none focus:ring-1 focus:ring-primary/50 focus:border-primary/50 transition-all"
@@ -224,7 +226,7 @@ export default function ModelsPage() {
                   className="lg:hidden flex items-center gap-2 h-10 px-4 bg-secondary rounded-lg text-sm"
                 >
                   <SlidersHorizontal className="w-4 h-4" />
-                  Filters
+                  {t("common.filters")}
                 </button>
 
                 {/* Sort Dropdown */}
@@ -236,7 +238,7 @@ export default function ModelsPage() {
                     <div className="flex items-center gap-2">
                       <ArrowUpDown className="w-4 h-4" />
                       <span>
-                        {sortOptions.find((o) => o.value === sortBy)?.label}
+                        {t(sortOptions.find((o) => o.value === sortBy)?.labelKey || "models.popular")}
                       </span>
                     </div>
                     <ChevronDown
@@ -261,7 +263,7 @@ export default function ModelsPage() {
                             sortBy === option.value && "text-primary"
                           )}
                         >
-                          {option.label}
+                          {t(option.labelKey)}
                         </button>
                       ))}
                     </div>
@@ -299,7 +301,7 @@ export default function ModelsPage() {
               {showFilters && (
                 <div className="lg:hidden mb-6 p-4 bg-secondary rounded-xl">
                   <div className="flex items-center justify-between mb-4">
-                    <h3 className="font-semibold">Filters</h3>
+                    <h3 className="font-semibold">{t("common.filters")}</h3>
                     <button onClick={() => setShowFilters(false)}>
                       <X className="w-5 h-5" />
                     </button>
@@ -325,7 +327,7 @@ export default function ModelsPage() {
 
               {/* Results Count */}
               <p className="text-sm text-muted-foreground mb-4">
-                Showing {filteredModels.length} models
+                {t("common.showing")} {filteredModels.length} {t("models.title").toLowerCase()}
               </p>
 
               {/* Models Grid/List */}
@@ -370,12 +372,12 @@ export default function ModelsPage() {
                           <div className="flex gap-1.5">
                             {model.isNew && (
                               <span className="px-2 py-0.5 text-xs font-medium bg-emerald-500/20 text-emerald-400 rounded-full">
-                                New
+                                {t("common.new")}
                               </span>
                             )}
                             {model.isFree && (
                               <span className="px-2 py-0.5 text-xs font-medium bg-blue-500/20 text-blue-400 rounded-full">
-                                Free
+                                {t("common.free")}
                               </span>
                             )}
                           </div>
@@ -394,13 +396,13 @@ export default function ModelsPage() {
 
                         <div className="flex items-center justify-between pt-4 border-t border-border text-sm">
                           <div>
-                            <span className="text-muted-foreground">Context: </span>
+                            <span className="text-muted-foreground">{t("models.contextLength")}: </span>
                             <span className="font-medium">
                               {formatContext(model.contextLength)}
                             </span>
                           </div>
                           <div>
-                            <span className="text-muted-foreground">Input: </span>
+                            <span className="text-muted-foreground">{t("models.inputPrice")}: </span>
                             <span className="font-medium">
                               {formatPrice(model.inputPrice)}
                             </span>
@@ -436,12 +438,12 @@ export default function ModelsPage() {
                             </h3>
                             {model.isNew && (
                               <span className="px-1.5 py-0.5 text-[10px] font-medium bg-emerald-500/20 text-emerald-400 rounded-full">
-                                New
+                                {t("common.new")}
                               </span>
                             )}
                             {model.isFree && (
                               <span className="px-1.5 py-0.5 text-[10px] font-medium bg-blue-500/20 text-blue-400 rounded-full">
-                                Free
+                                {t("common.free")}
                               </span>
                             )}
                           </div>
@@ -452,19 +454,19 @@ export default function ModelsPage() {
 
                         <div className="hidden sm:flex items-center gap-6 text-sm">
                           <div className="text-right">
-                            <p className="text-muted-foreground">Context</p>
+                            <p className="text-muted-foreground">{t("models.contextLength")}</p>
                             <p className="font-medium">
                               {formatContext(model.contextLength)}
                             </p>
                           </div>
                           <div className="text-right">
-                            <p className="text-muted-foreground">Input</p>
+                            <p className="text-muted-foreground">{t("models.inputPrice")}</p>
                             <p className="font-medium">
                               {formatPrice(model.inputPrice)}
                             </p>
                           </div>
                           <div className="text-right">
-                            <p className="text-muted-foreground">Output</p>
+                            <p className="text-muted-foreground">{t("models.outputPrice")}</p>
                             <p className="font-medium">
                               {formatPrice(model.outputPrice)}
                             </p>
@@ -478,7 +480,7 @@ export default function ModelsPage() {
 
               {filteredModels.length === 0 && (
                 <div className="text-center py-16">
-                  <p className="text-muted-foreground mb-4">No models found</p>
+                  <p className="text-muted-foreground mb-4">{t("models.noModelsFound")}</p>
                   <button
                     onClick={() => {
                       setSearchQuery("");
@@ -487,7 +489,7 @@ export default function ModelsPage() {
                     }}
                     className="text-primary hover:underline"
                   >
-                    Clear all filters
+                    {t("common.clearAllFilters")}
                   </button>
                 </div>
               )}

@@ -1,6 +1,9 @@
+"use client";
+
 import Link from "next/link";
 import { Header } from "@/components/Header";
 import { Footer } from "@/components/Footer";
+import { useI18n } from "@/lib/i18n-context";
 import { Calendar, ArrowRight, Tag } from "lucide-react";
 
 const announcements = [
@@ -78,9 +81,17 @@ const announcements = [
   },
 ];
 
-const categories = ["All", "New Model", "Feature", "Report", "Enterprise"];
-
 export default function AnnouncementsPage() {
+  const { t } = useI18n();
+
+  const categories = [
+    t("announcements.categories.all"),
+    t("announcements.categories.newModel"),
+    t("announcements.categories.feature"),
+    t("announcements.categories.report"),
+    t("announcements.categories.enterprise"),
+  ];
+
   const featuredAnnouncements = announcements.filter((a) => a.featured);
   const otherAnnouncements = announcements.filter((a) => !a.featured);
 
@@ -91,9 +102,9 @@ export default function AnnouncementsPage() {
         <div className="mx-auto max-w-7xl px-6 md:px-8 py-12">
           {/* Header */}
           <div className="mb-10">
-            <h1 className="text-4xl font-bold mb-3">Announcements</h1>
+            <h1 className="text-4xl font-bold mb-3">{t("announcements.title")}</h1>
             <p className="text-lg text-muted-foreground">
-              Stay up to date with the latest news and updates from OpenRouter
+              {t("announcements.subtitle")}
             </p>
           </div>
 
@@ -115,7 +126,7 @@ export default function AnnouncementsPage() {
 
           {/* Featured */}
           <div className="mb-12">
-            <h2 className="text-xl font-semibold mb-6">Featured</h2>
+            <h2 className="text-xl font-semibold mb-6">{t("common.featured")}</h2>
             <div className="grid md:grid-cols-3 gap-6">
               {featuredAnnouncements.map((announcement) => (
                 <Link
@@ -151,7 +162,7 @@ export default function AnnouncementsPage() {
 
           {/* All Announcements */}
           <div>
-            <h2 className="text-xl font-semibold mb-6">All Updates</h2>
+            <h2 className="text-xl font-semibold mb-6">{t("announcements.allUpdates")}</h2>
             <div className="space-y-4">
               {otherAnnouncements.map((announcement) => (
                 <Link
@@ -186,19 +197,18 @@ export default function AnnouncementsPage() {
 
           {/* Newsletter */}
           <div className="mt-16 rounded-2xl border border-border bg-card p-8 text-center">
-            <h2 className="text-2xl font-bold mb-3">Stay in the loop</h2>
+            <h2 className="text-2xl font-bold mb-3">{t("announcements.stayInLoop.title")}</h2>
             <p className="text-muted-foreground mb-6 max-w-lg mx-auto">
-              Subscribe to our newsletter to get the latest updates delivered
-              to your inbox
+              {t("announcements.stayInLoop.description")}
             </p>
             <div className="flex flex-col sm:flex-row gap-3 max-w-md mx-auto">
               <input
                 type="email"
-                placeholder="Enter your email"
+                placeholder={t("common.enterEmail")}
                 className="flex-1 h-11 px-4 bg-secondary rounded-xl text-sm placeholder:text-muted-foreground border border-transparent focus:outline-none focus:ring-2 focus:ring-primary/50"
               />
               <button className="h-11 px-6 bg-primary text-primary-foreground rounded-xl font-medium hover:bg-primary/90 transition-colors">
-                Subscribe
+                {t("common.subscribe")}
               </button>
             </div>
           </div>
