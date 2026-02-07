@@ -3,6 +3,7 @@
 import { useState, useEffect } from "react";
 import { createClient } from "@/lib/supabase/client";
 import { useAuth } from "@/lib/auth-context";
+import { useTheme } from "@/lib/theme-context";
 import { Loader2, Check, Moon, Sun, Monitor, Bell, Mail, AlertTriangle } from "lucide-react";
 import { cn } from "@/lib/utils";
 
@@ -28,6 +29,7 @@ const languages = [
 
 export default function SettingsPreferencesPage() {
   const { user } = useAuth();
+  const { theme: currentTheme, setTheme } = useTheme();
   const supabase = createClient();
   const [preferences, setPreferences] = useState<Preferences | null>(null);
   const [isLoading, setIsLoading] = useState(true);
@@ -140,21 +142,26 @@ export default function SettingsPreferencesPage() {
               { id: "light", name: "Light", icon: Sun },
               { id: "dark", name: "Dark", icon: Moon },
               { id: "system", name: "System", icon: Monitor },
-            ].map((theme) => {
-              const Icon = theme.icon;
+            ].map((themeOption) => {
+              const Icon = themeOption.icon;
               return (
                 <button
-                  key={theme.id}
-                  onClick={() => savePreferences({ theme: theme.id as Preferences["theme"] })}
+                  key={themeOption.id}
+                  onClick={() => {
+                    setTheme(themeOption.id as "light" | "dark" | "system");
+                    setPreferences(prev => prev ? { ...prev, theme: themeOption.id as Preferences["theme"] } : prev);
+                    setSaved(true);
+                    setTimeout(() => setSaved(false), 2000);
+                  }}
                   className={cn(
                     "flex items-center gap-2 px-4 py-2.5 rounded-lg border transition-colors",
-                    preferences.theme === theme.id
+                    currentTheme === themeOption.id
                       ? "border-primary bg-primary/10 text-primary"
                       : "border-border hover:border-primary/50"
                   )}
                 >
                   <Icon className="w-4 h-4" />
-                  {theme.name}
+                  {themeOption.name}
                 </button>
               );
             })}
