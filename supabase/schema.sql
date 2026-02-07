@@ -50,7 +50,6 @@ CREATE POLICY "Users can insert own profile"
 CREATE TABLE public.user_preferences (
   id UUID DEFAULT uuid_generate_v4() PRIMARY KEY,
   user_id UUID REFERENCES auth.users(id) ON DELETE CASCADE NOT NULL,
-  default_model TEXT DEFAULT 'anthropic/claude-3.5-sonnet',
   theme TEXT DEFAULT 'dark' CHECK (theme IN ('light', 'dark', 'system')),
   language TEXT DEFAULT 'en',
   email_notifications BOOLEAN DEFAULT true,

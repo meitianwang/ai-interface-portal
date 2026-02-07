@@ -7,7 +7,6 @@ import { Loader2, Check, Moon, Sun, Monitor, Bell, Mail, AlertTriangle } from "l
 import { cn } from "@/lib/utils";
 
 interface Preferences {
-  default_model: string;
   theme: "light" | "dark" | "system";
   language: string;
   email_notifications: boolean;
@@ -16,14 +15,6 @@ interface Preferences {
   low_balance_alert_threshold: number;
   data_collection_consent: boolean;
 }
-
-const models = [
-  { id: "anthropic/claude-3.5-sonnet", name: "Claude 3.5 Sonnet" },
-  { id: "openai/gpt-4o", name: "GPT-4o" },
-  { id: "google/gemini-2.0-flash", name: "Gemini 2.0 Flash" },
-  { id: "meta/llama-3.3-70b", name: "Llama 3.3 70B" },
-  { id: "mistralai/mistral-large", name: "Mistral Large" },
-];
 
 const languages = [
   { id: "en", name: "English" },
@@ -63,7 +54,6 @@ export default function SettingsPreferencesPage() {
 
       if (data) {
         setPreferences({
-          default_model: data.default_model,
           theme: data.theme,
           language: data.language,
           email_notifications: data.email_notifications,
@@ -139,25 +129,6 @@ export default function SettingsPreferencesPage() {
       </div>
 
       <div className="space-y-8">
-        {/* Default Model */}
-        <div className="rounded-xl border border-border bg-card p-6">
-          <h2 className="font-semibold mb-1">Default Model</h2>
-          <p className="text-sm text-muted-foreground mb-4">
-            The model to use by default when starting a new chat
-          </p>
-          <select
-            value={preferences.default_model}
-            onChange={(e) => savePreferences({ default_model: e.target.value })}
-            className="w-full max-w-md h-10 px-4 bg-secondary rounded-lg text-sm border border-transparent focus:outline-none focus:ring-2 focus:ring-primary/50"
-          >
-            {models.map((model) => (
-              <option key={model.id} value={model.id}>
-                {model.name}
-              </option>
-            ))}
-          </select>
-        </div>
-
         {/* Theme */}
         <div className="rounded-xl border border-border bg-card p-6">
           <h2 className="font-semibold mb-1">Theme</h2>
