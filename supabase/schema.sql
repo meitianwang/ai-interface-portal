@@ -234,5 +234,29 @@ CREATE TRIGGER update_user_credits_updated_at
   FOR EACH ROW EXECUTE FUNCTION public.update_updated_at_column();
 
 -- =============================================
+-- 8. Notification Logs Table
+-- =============================================
+CREATE TABLE public.notification_logs (
+  id UUID DEFAULT uuid_generate_v4() PRIMARY KEY,
+  user_id UUID REFERENCES auth.users(id) ON DELETE CASCADE NOT NULL,
+  type TEXT NOT NULL, -- 'low_balance', 'account', 'marketing'
+  metadata JSONB DEFAULT '{}',
+  created_at TIMESTAMPTZ DEFAULT NOW()
+);
+
+-- Enable RLS
+ALTER TABLE public.notification_logs ENABLE ROW LEVEL SECURITY;
+
+-- Only service role can read/write (for backend use)
+CREATE POLICY "Service role can manage notification_logs"
+  ON public.notification_logs
+  FOR ALL
+  USING (auth.role() = 'service_role');
+
+-- Index for efficient lookups
+CREATE INDEX idx_notification_logs_user_type_created
+  ON public.notification_logs (user_id, type, created_at DESC);
+
+-- =============================================
 -- Done! Your database is ready.
 -- =============================================

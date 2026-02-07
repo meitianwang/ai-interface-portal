@@ -7,6 +7,7 @@ import en from "@/locales/en.json";
 import zh from "@/locales/zh.json";
 
 type Locale = "en" | "zh";
+export type { Locale };
 type Translations = typeof en;
 
 const translations: Record<Locale, Translations> = { en, zh };
