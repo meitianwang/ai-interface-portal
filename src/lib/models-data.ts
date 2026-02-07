@@ -13,7 +13,6 @@ export interface Model {
   isFree?: boolean;
   throughput?: string;
   latency?: string;
-  createdAt: string; // ISO date string
 }
 
 export const models: Model[] = [
@@ -28,7 +27,6 @@ export const models: Model[] = [
     outputPrice: 15.0,
     tags: ["chat", "code", "reasoning"],
     isNew: true,
-    createdAt: "2025-01-20",
   },
   {
     id: "openai/gpt-4o",
@@ -40,7 +38,6 @@ export const models: Model[] = [
     inputPrice: 2.5,
     outputPrice: 10.0,
     tags: ["chat", "vision", "code"],
-    createdAt: "2024-05-13",
   },
   {
     id: "google/gemini-2.0-flash",
@@ -53,7 +50,6 @@ export const models: Model[] = [
     outputPrice: 0.30,
     tags: ["chat", "fast"],
     isNew: true,
-    createdAt: "2025-01-15",
   },
   {
     id: "meta/llama-3.3-70b",
@@ -65,7 +61,6 @@ export const models: Model[] = [
     inputPrice: 0.12,
     outputPrice: 0.30,
     tags: ["chat", "open-source"],
-    createdAt: "2024-12-06",
   },
   {
     id: "anthropic/claude-3-opus",
@@ -77,7 +72,6 @@ export const models: Model[] = [
     inputPrice: 15.0,
     outputPrice: 75.0,
     tags: ["chat", "reasoning", "code"],
-    createdAt: "2024-03-04",
   },
   {
     id: "mistralai/mistral-large",
@@ -89,7 +83,6 @@ export const models: Model[] = [
     inputPrice: 2.0,
     outputPrice: 6.0,
     tags: ["chat", "reasoning"],
-    createdAt: "2024-02-26",
   },
   {
     id: "deepseek/deepseek-v3",
@@ -102,7 +95,6 @@ export const models: Model[] = [
     outputPrice: 0.28,
     tags: ["chat", "code"],
     isNew: true,
-    createdAt: "2025-01-10",
   },
   {
     id: "qwen/qwen-2.5-72b",
@@ -114,7 +106,6 @@ export const models: Model[] = [
     inputPrice: 0.35,
     outputPrice: 0.40,
     tags: ["chat", "multilingual"],
-    createdAt: "2024-09-19",
   },
   {
     id: "google/gemini-1.5-pro",
@@ -126,7 +117,6 @@ export const models: Model[] = [
     inputPrice: 1.25,
     outputPrice: 5.0,
     tags: ["chat", "vision", "long-context"],
-    createdAt: "2024-02-15",
   },
   {
     id: "cohere/command-r-plus",
@@ -138,7 +128,6 @@ export const models: Model[] = [
     inputPrice: 2.5,
     outputPrice: 10.0,
     tags: ["chat", "rag"],
-    createdAt: "2024-04-04",
   },
   {
     id: "openai/gpt-4-turbo",
@@ -150,7 +139,6 @@ export const models: Model[] = [
     inputPrice: 10.0,
     outputPrice: 30.0,
     tags: ["chat", "vision", "code"],
-    createdAt: "2024-04-09",
   },
   {
     id: "anthropic/claude-3-haiku",
@@ -162,7 +150,6 @@ export const models: Model[] = [
     inputPrice: 0.25,
     outputPrice: 1.25,
     tags: ["chat", "fast"],
-    createdAt: "2024-03-13",
   },
   {
     id: "huggingface/zephyr-7b",
@@ -175,7 +162,6 @@ export const models: Model[] = [
     outputPrice: 0,
     tags: ["chat", "free"],
     isFree: true,
-    createdAt: "2023-10-25",
   },
   {
     id: "nousresearch/hermes-3-405b",
@@ -187,7 +173,6 @@ export const models: Model[] = [
     inputPrice: 0.80,
     outputPrice: 0.80,
     tags: ["chat", "open-source"],
-    createdAt: "2024-08-15",
   },
   {
     id: "perplexity/sonar-large",
@@ -199,7 +184,6 @@ export const models: Model[] = [
     inputPrice: 1.0,
     outputPrice: 1.0,
     tags: ["chat", "search"],
-    createdAt: "2024-11-20",
   },
 ];
 

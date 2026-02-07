@@ -60,7 +60,7 @@ export default function ModelsPage() {
     // Sort
     switch (sortBy) {
       case "newest":
-        result.sort((a, b) => new Date(b.createdAt).getTime() - new Date(a.createdAt).getTime());
+        result = result.filter((m) => m.isNew).concat(result.filter((m) => !m.isNew));
         break;
       case "price-low":
         result.sort((a, b) => a.inputPrice - b.inputPrice);
